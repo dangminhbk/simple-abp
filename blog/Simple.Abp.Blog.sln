@@ -87,6 +87,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF4D2AA3-D19
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3232B3B8-534A-4377-9BC4-0A23B6B809C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple.Abp.Blog.Web.Front", "src\Simple.Abp.Blog.Web.Front\Simple.Abp.Blog.Web.Front.csproj", "{DE3BD175-B56E-4B6D-A2C3-DB341C42E428}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -213,6 +215,10 @@ Global
 		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE3BD175-B56E-4B6D-A2C3-DB341C42E428}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE3BD175-B56E-4B6D-A2C3-DB341C42E428}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE3BD175-B56E-4B6D-A2C3-DB341C42E428}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE3BD175-B56E-4B6D-A2C3-DB341C42E428}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -257,6 +263,7 @@ Global
 		{545B6E6A-2278-4C02-856E-79EF7F14AD1C} = {AF4D2AA3-D19E-4021-A645-674145FDAD8C}
 		{AF4D2AA3-D19E-4021-A645-674145FDAD8C} = {0447E2AC-D81F-443A-AF72-538F42CC064C}
 		{3232B3B8-534A-4377-9BC4-0A23B6B809C3} = {E7F2CDEC-FB9D-4CE0-90A8-9BC710A34492}
+		{DE3BD175-B56E-4B6D-A2C3-DB341C42E428} = {CA9AC87F-097E-4F15-8393-4BC07735A5B0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D6F21B5C-A699-4D9A-B572-C988E33439B7}

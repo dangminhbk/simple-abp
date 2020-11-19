@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Autofac" Version="3.3.1" />
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="3.3.1" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\modules\articles\src\Simple.Abp.Articles.Web.Front\Simple.Abp.Articles.Web.Front.csproj" />
+    <ProjectReference Include="..\Simple.Abp.Blog.HttpApi.Client\Simple.Abp.Blog.HttpApi.Client.csproj" />
+    <ProjectReference Include="..\Simple.Abp.Blog.HttpApi\Simple.Abp.Blog.HttpApi.csproj" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Shared\" />
+  </ItemGroup>
+  
+</Project>
