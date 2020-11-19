@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simple.Abp.TencentCos", "src\Simple.Abp.TencentCos\Simple.Abp.TencentCos.csproj", "{545B6E6A-2278-4C02-856E-79EF7F14AD1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AF4D2AA3-D19E-4021-A645-674145FDAD8C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{545B6E6A-2278-4C02-856E-79EF7F14AD1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{545B6E6A-2278-4C02-856E-79EF7F14AD1C} = {AF4D2AA3-D19E-4021-A645-674145FDAD8C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6F21B5C-A699-4D9A-B572-C988E33439B7}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,13 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@inject IPageLayout PageLayout
+
+@{ }
+<ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+    @foreach (var item in PageLayout.Content.BreadCrumb.Items)
+    {
+        <li class="breadcrumb-item">
+            <a href="@item.Url" class="text-muted">@item.Text</a>
+        </li>
+    }
+</ul>
+

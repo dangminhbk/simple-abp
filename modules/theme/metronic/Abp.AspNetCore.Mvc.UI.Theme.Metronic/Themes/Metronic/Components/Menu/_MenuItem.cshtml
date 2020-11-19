@@ -1,0 +1,47 @@
+﻿@using Volo.Abp.UI.Navigation
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+
+@inject IPageLayout PageLayout
+@model ApplicationMenuItem
+@{
+    var elementId = string.IsNullOrEmpty(Model.ElementId) ? string.Empty : $"id=\"{Model.ElementId}\"";
+    var cssClass = string.IsNullOrEmpty(Model.CssClass) ? string.Empty : Model.CssClass;
+    var disabled = Model.IsDisabled ? "disabled" : string.Empty;
+    var url = string.IsNullOrEmpty(Model.Url) ? "#" : Url.Content(Model.Url);
+    var active = PageLayout.Content.MenuItemName == Model.Name ? "menu-item-active" : "";
+    var menuOpen = Model.FindMenuItem(PageLayout.Content.MenuItemName) != null ? "menu-item-open" : "";
+}
+
+@if (Model.Url != null)
+{
+
+    <li class="menu-item @active" aria-haspopup="true">
+        <a href="@url" class="menu-link">
+            <i class="menu-icon @(Model.Icon??"menu-bullet menu-bullet-dot")">
+                <span></span>
+            </i>
+            <span class="menu-text">@Model.DisplayName</span>
+        </a>
+    </li>
+}
+else
+{
+    <li class="menu-item menu-item-submenu @menuOpen" aria-haspopup="true" data-menu-toggle="hover">
+        <a href="javascript:;" class="menu-link menu-toggle">
+            <i class="menu-icon @(Model.Icon??"menu-bullet menu-bullet-line")">
+                <span></span>
+            </i>
+            <span class="menu-text">@Model.DisplayName</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="menu-submenu">
+            <i class="menu-arrow"></i>
+            <ul class="menu-subnav">
+                @foreach (var childMenuItem in Model.Items)
+                {
+                    @await Html.PartialAsync("~/Themes/Metronic/Components/Menu/_MenuItem.cshtml", childMenuItem)
+                }
+            </ul>
+        </div>
+    </li>
+}

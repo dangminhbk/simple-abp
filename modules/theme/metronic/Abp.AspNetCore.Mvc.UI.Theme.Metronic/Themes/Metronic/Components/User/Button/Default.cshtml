@@ -1,0 +1,17 @@
+﻿@using System.Web;
+<!--begin::User-->
+<div class="topbar-item mr-4">
+    <div class="btn btn-icon btn-sm btn-clean btn-text-dark-75" id="kt_quick_user_toggle">
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <a href="/account/login?returnUrl=@(HttpUtility.UrlEncode(Context.Request.Path))">
+                @await Html.PartialAsync("~/Themes/Metronic/Components/User/Button/_Button.cshtml")
+            </a>
+        }
+        else
+        {
+            @await Html.PartialAsync("~/Themes/Metronic/Components/User/Button/_Button.cshtml")
+        }
+    </div>
+</div>
+<!--end::User-->

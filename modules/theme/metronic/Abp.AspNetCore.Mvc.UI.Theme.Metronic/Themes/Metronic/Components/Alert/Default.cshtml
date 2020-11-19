@@ -1,0 +1,22 @@
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Components
+@using Volo.Abp.AspNetCore.Mvc.UI.Alerts
+
+@inject IBrandingProvider BrandingProvider
+@inject IAlertManager AlertManager
+@{ }
+@foreach (var alert in AlertManager.Alerts)
+{
+    <div class="alert alert-custom alert-light-@alert.Type.ToString().ToLower() shadow-lg fade show mb-5" role="alert">
+        <div class="alert-icon">
+            <i class="flaticon-warning"></i>
+        </div>
+        <div class="alert-text">@alert.Text</div>
+        <div class="alert-close">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">
+                    <i class="ki ki-close"></i>
+                </span>
+            </button>
+        </div>
+    </div>
+}

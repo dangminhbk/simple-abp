@@ -1,0 +1,57 @@
+﻿@page
+@*@using Abp.AspNetCore.Mvc.UI.Theme.Metronic.Themes.Metronic.Components.Alert*@
+@model Volo.Abp.Account.Web.Pages.Account.LoginModel
+@{
+}
+<div class="login-form text-center p-7 position-relative overflow-hidden">
+    @(await Component.InvokeAsync<MainAccountHeaderViewComponent>())
+    <div class="login-signin">
+        <div class="mb-10">
+            <div class="text-muted font-weight-bold">
+                <temp>只需一次登录，即可访问<a href="javascript: void(0)"> keepactive.cn </a>的所有内容</temp>
+                @*@if (Model.Client == null)
+                {
+                    <temp>只需一次登录，即可访问<a href="javascript: void(0)"> keepactive.cn </a>的所有内容</temp>
+                }
+                else
+                {
+                    <temp>使用你的帐号访问 <a href="@(Model.Client.ClientUri??"javascript: void(0)")"> @Model.Client.ClientName</a> ，并同时登录 keepactive.cn</temp>
+                }*@
+            </div>
+        </div>
+
+        <form method="post" class="form" id="kt_login_signin_form">
+            @*@(await Component.InvokeAsync<MainAlertViewComponent>())*@
+            <input asp-for="ReturnUrl" />
+            <input asp-for="ReturnUrlHash" />
+            <div class="form-group mb-5">
+
+                <input asp-for="LoginInput.UserNameOrEmailAddress" placeholder="用户名" class="form-control h-auto form-control-solid py-4 px-8" />
+                <div class="fv-plugins-message-container">
+                    <span asp-validation-for="LoginInput.UserNameOrEmailAddress" class="fv-help-block"></span>
+                </div>
+                <AbpValidationMessage For="()=>LoginInput.Username" />
+            </div>
+            <div class="form-group mb-5">
+                <input asp-for="LoginInput.Password" placeholder="密码" class="form-control h-auto form-control-solid py-4 px-8" />
+                <div class="fv-plugins-message-container">
+                    <span asp-validation-for="LoginInput.Password" class="fv-help-block"></span>
+                </div>
+            </div>
+            <div class="form-group d-flex flex-wrap justify-content-between align-items-center">
+                <div class="checkbox-inline">
+                    <label class="checkbox m-0 text-muted">
+                        <input asp-for="LoginInput.RememberMe" type="checkbox" />
+                        <span></span>记住我
+                    </label>
+                </div>
+                <a href="javascript:void(0);" class="text-muted text-hover-primary spinner-light">忘记密码？</a>
+            </div>
+            <button type="submit" name="Action" value="Login" class="btn btn-primary btn-lg btn-block">登 录</button>
+        </form>
+        <div class="mt-10">
+            <span class="opacity-70 mr-4">还没有账号?</span>
+            <a href="javascript:void(0);" class="text-muted text-hover-primary font-weight-bold">注册！</a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Simple.Abp.Blog</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\framework\src\Simple.Abp.TencentCos\Simple.Abp.TencentCos.csproj" />
+    <ProjectReference Include="..\..\..\modules\articles\src\Simple.Abp.Articles.HttpApi\Simple.Abp.Articles.HttpApi.csproj" />
+    <ProjectReference Include="..\Simple.Abp.Blog.Application.Contracts\Simple.Abp.Blog.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.HttpApi" Version="3.3.1" />
+    <PackageReference Include="Volo.Abp.Identity.HttpApi" Version="3.3.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.HttpApi" Version="3.3.1" />
+  </ItemGroup>
+
+</Project>
