@@ -1,0 +1,47 @@
+﻿@page
+@using Simple.Abp.Articles.Web.Front.Shared.Components.About
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Project
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Bilibili
+@model Simple.Abp.Articles.Web.Front.Pages.IndexModel
+@{
+}
+
+@(await Component.InvokeAsync<AboutViewComponent>())
+
+<section id="writing">
+    <span class="h1">
+        <a href="/writing">Writing</a>
+    </span>
+
+    <ul class="post-list">
+        @foreach (var article in Model.Articles)
+        {
+            <li class="post-item">
+                <div class="meta">
+                    <time datetime="@article.CreationTime" itemprop="datePublished">
+                        @article.FrontCreationTime
+                    </time>
+                </div>
+                <span>
+                    <a href="@article.FrontUrl">
+                        @article.Title
+                    </a>
+                </span>
+            </li>
+        }
+    </ul>
+</section>
+
+<section id="projects">
+    <span class="h1">
+        <a href="/projects">Projects</a>
+    </span>
+    @(await Component.InvokeAsync<ProjectViewComponent>())
+</section>
+
+<section id="Bilibili">
+    <span class="h1">
+        <a href="/bilibili">Bilibili</a>
+    </span>
+    @(await Component.InvokeAsync<BilibiliViewComponent>())
+</section>

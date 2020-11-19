@@ -1,0 +1,61 @@
+@page
+@using Simple.Abp.Articles.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Simple.Abp.Articles.Localization
+@using Simple.Abp.Articles.Web.Navigation
+@using Simple.Abp.Articles.Web.Pages.Articles.Article
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<ArticlesResource> L
+@inject IAuthorizationService Authorization
+@{ PageLayout.Content.Title = L["Article"].Value;
+                PageLayout.Content.BreadCrumb.Add(L["Menu:Article"].Value);
+                PageLayout.Content.MenuItemName = ArticlesMenus.Article; }
+
+@section styles
+{
+    <abp-style src="/libs/select2/css/select2.min.css" />
+    <abp-style src="/libs/jquyer-tree/css/jstree.css" />
+}
+
+<abp-card>
+    <abp-card-header>
+        @if (await Authorization.IsGrantedAsync(ArticlesPermissions.Article.Create))
+        {
+<abp-button id="NewArticleButton"
+            text="@L["CreateArticle"].Value"
+            icon="plus"
+            button-type="Primary" />}
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="ArticleTable" class="nowrap">
+            <thead>
+                <tr>
+                    <th>@L["Actions"]</th>
+                    <th>@L["Title"]</th>
+                    <th>@L["Catalog"]</th>
+                    <th>@L["Tag"]</th>
+                    <th>@L["IsTop"]</th>
+                    <th>@L["IsRefinement"]</th>
+                    <th>@L["State"]</th>
+                </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>
+
+@section scripts
+{
+    <script src="~/libs/tinymce/tinymce.min.js"></script>
+
+    <abp-script src="/libs/jquyer-tree/jstree.bundle.js" />
+    <abp-script src="/libs/select2/js/select2.full.min.js" />
+
+    <abp-script src="/Pages/Articles/Catalog/catalog-tree.js" />
+    <abp-script src="/Pages/Articles/Tag/tag-select2.js" />
+
+    <abp-script src="/Pages/Articles/Article/article-modal.js" />
+    <abp-script src="/Pages/Articles/Article/index.js" />
+}

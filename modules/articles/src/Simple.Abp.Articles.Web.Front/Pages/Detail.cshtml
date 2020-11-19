@@ -1,0 +1,247 @@
+﻿@page "/article/{year:int}/{month:int}/{day:int}/{seo}"
+@model Simple.Abp.Articles.Web.Front.Pages.DetailModel
+@{
+    Layout = "/Shared/_Layout2.cshtml";
+    ViewBag.Title = Model.Article.Title;
+    ViewBag.Content = Model.Article.Summary;
+}
+@section styles{
+    <link href="~/libs/prism/themes/prism-tomorrow.css" rel="stylesheet" />
+    <link href="~/libs/blog/css/detail.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/libs/prism/prism.js"></script>
+    <script src="~/libs/blog/js/detail.js"></script>
+}
+
+
+@section header{
+
+    <div id="header-post">
+        <a id="menu-icon" href="#" class="active">
+            <i class="fas fa-bars fa-lg"></i>
+        </a>
+        <a id="menu-icon-tablet" href="#" class="active">
+            <i class="fas fa-bars fa-lg"></i>
+        </a>
+        <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;">
+            <i class="fas fa-chevron-up fa-lg"></i>
+        </a>
+        <span id="menu" style="visibility: visible;">
+            <span id="nav">
+                <ul>
+                    @await Html.PartialAsync("/Shared/_NavItems.cshtml")
+                </ul>
+            </span>
+            <br>
+            <span id="actions">
+                <ul>
+                    @if (Model.Article.Next != null)
+                    {
+                        <li>
+                            <a class="icon" href="@Model.Article.Next.FrontUrl">
+                                <i class="fas fa-chevron-left" aria-hidden="true"
+                                   onmouseover="$('#i-next').toggle();"
+                                   onmouseout="$('#i-next').toggle();">
+                                </i>
+                            </a>
+                        </li>
+                    }
+
+                    @if (Model.Article.Previous != null)
+                    {
+                        <li>
+                            <a class="icon" href="@Model.Article.Previous.FrontUrl">
+                                <i class="fas fa-chevron-right" aria-hidden="true"
+                                   onmouseover="$('#i-prev').toggle();"
+                                   onmouseout="$('#i-prev').toggle();">
+                                </i>
+                            </a>
+                        </li>
+                    }
+
+                    <li>
+                        <a class="icon" href="#"
+                           onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');">
+                            <i class="fas fa-chevron-up" aria-hidden="true"
+                               onmouseover="$('#i-top').toggle();"
+                               onmouseout="$('#i-top').toggle();">
+                            </i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="#">
+                            <i class="fas fa-share-alt" aria-hidden="true"
+                               onmouseover="$('#i-share').toggle();"
+                               onmouseout="$('#i-share').toggle();"
+                               onclick="$('#share').toggle();return false;">
+                            </i>
+                        </a>
+                    </li>
+                </ul>
+                <span id="i-prev" class="info" style="display:none;">
+                    Previous post
+                </span>
+                <span id="i-next" class="info" style="display:none;">
+                    Next post
+                </span>
+                <span id="i-top" class="info" style="display:none;">
+                    Back to top
+                </span>
+                <span id="i-share" class="info" style="display:none;">
+                    Share post
+                </span>
+            </span>
+            <br>
+            <div id="share" style="display: none">
+                @*<ul>
+                    <li>
+                        <a class="icon" href="http://www.facebook.com/sharer.php?u=http://probbechts.github.io/2016/11/14/hello-world/">
+                            <i class="fab fa-facebook " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="https://twitter.com/share?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;text=Hello World">
+                            <i class="fab fa-twitter " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="http://www.linkedin.com/shareArticle?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;title=Hello World">
+                            <i class="fab fa-linkedin " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;is_video=false&amp;description=Hello World">
+                            <i class="fab fa-pinterest " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="mailto:?subject=Hello World&amp;body=Check out this article: http://probbechts.github.io/2016/11/14/hello-world/">
+                            <i class="fas fa-envelope " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="https://getpocket.com/save?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;title=Hello World">
+                            <i class="fab fa-get-pocket " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="http://reddit.com/submit?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;title=Hello World">
+                            <i class="fab fa-reddit " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="http://www.stumbleupon.com/submit?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;title=Hello World">
+                            <i class="fab fa-stumbleupon " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="http://digg.com/submit?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;title=Hello World">
+                            <i class="fab fa-digg " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="http://www.tumblr.com/share/link?url=http://probbechts.github.io/2016/11/14/hello-world/&amp;name=Hello World&amp;description=">
+                            <i class="fab fa-tumblr " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="icon" href="https://news.ycombinator.com/submitlink?u=http://probbechts.github.io/2016/11/14/hello-world/&amp;t=Hello World">
+                            <i class="fab fa-hacker-news " aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>*@
+
+            </div>
+            <div id="toc">
+            </div>
+        </span>
+    </div>
+
+}
+
+<article class="post">
+    <header>
+
+        <h1 class="posttitle" itemprop="name headline">
+            @Model.Article.Title
+        </h1>
+
+        <div class="meta">
+
+            @*<span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+                    <span itemprop="name">Cactus Dark</span>
+                </span>*@
+
+            <div class="postdate">
+                <time datetime="@Model.Article.CreationTime" itemprop="datePublished">
+                    @Model.Article.FrontCreationTime
+                </time>
+            </div>
+
+            <div class="article-tag">
+                <i class="fas fa-tag"></i>
+                <a class="tag-link" href="/writing/catalog/@Model.Article.Catalog?.Title.ToLower()">
+                    @Model.Article.Catalog?.Title
+                </a>,
+                @if (!Model.Article.Tag.IsNullOrWhiteSpace())
+                {
+                    <a class="tag-link" href="/writing/tag/@Model.Article.Tag.ToLower()">
+                        @Model.Article.Tag
+                    </a>
+                }
+
+            </div>
+        </div>
+    </header>
+
+
+    <div class="content" itemprop="articleBody">
+        <p>
+            @Model.Article.Summary
+        </p>
+        @Html.Raw(Model.Article.Content)
+    </div>
+</article>
+
+
+
+
+<div id="footer-post-container">
+    <div id="footer-post">
+
+        <div id="nav-footer" style="display: none">
+            <ul>
+                @await Html.PartialAsync("/Shared/_NavItems.cshtml")
+            </ul>
+        </div>
+
+        <div id="toc-footer" style="display: none">        
+        </div>
+
+        <div id="share-footer" style="display: none">
+            @*<ul>
+                <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://probberechts.github.io/2016/11/14/hello-world/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="https://twitter.com/share?url=http://probberechts.github.io/2016/11/14/hello-world/&text=Hello World"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://probberechts.github.io/2016/11/14/hello-world/&title=Hello World"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://probberechts.github.io/2016/11/14/hello-world/&is_video=false&description=Hello World"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="mailto:?subject=Hello World&body=Check out this article: http://probberechts.github.io/2016/11/14/hello-world/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="https://getpocket.com/save?url=http://probberechts.github.io/2016/11/14/hello-world/&title=Hello World"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="http://reddit.com/submit?url=http://probberechts.github.io/2016/11/14/hello-world/&title=Hello World"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://probberechts.github.io/2016/11/14/hello-world/&title=Hello World"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="http://digg.com/submit?url=http://probberechts.github.io/2016/11/14/hello-world/&title=Hello World"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://probberechts.github.io/2016/11/14/hello-world/&name=Hello World&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+                <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://probberechts.github.io/2016/11/14/hello-world/&t=Hello World"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+            </ul>*@
+
+        </div>
+
+        <div id="actions-footer">
+            <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+            <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+            <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+            <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿@page
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Pagination
+@model Simple.Abp.Articles.Web.Front.Pages.WritingModel
+@{
+    ViewBag.Title = "Writing";
+}
+<div id="archive">
+    <ul class="post-list">
+        @foreach (var group in Model.Articles)
+        {
+            <h2>@group.Key</h2>
+            foreach (var article in group.Value)
+            {
+                <li class="post-item">
+                    <div class="meta">
+                        <time datetime="@article.CreationTime" itemprop="datePublished">
+                            @article.FrontCreationTime
+                        </time>
+                    </div>
+                    <span>
+                        <a href="@article.FrontUrl">
+                            @article.Title
+                        </a>
+                    </span>
+                </li>
+            }
+
+        }
+
+
+    </ul>
+
+    @(await Component.InvokeAsync<PaginationViewComponent>(new { vm = Model.PaginationViewModel }))
+
+</div>

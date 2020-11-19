@@ -1,0 +1,7 @@
+﻿@page
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Bilibili
+@model Simple.Abp.Articles.Web.Front.Pages.BilibiliModel
+@{
+    ViewBag.Title = "Bilibili";
+}
+@(await Component.InvokeAsync<BilibiliViewComponent>())

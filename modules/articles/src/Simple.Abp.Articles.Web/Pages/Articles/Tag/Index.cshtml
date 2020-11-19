@@ -1,0 +1,44 @@
+@page
+@using Simple.Abp.Articles.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Simple.Abp.Articles.Web.Pages.Articles.Tag
+@using Simple.Abp.Articles.Localization
+@using Simple.Abp.Articles.Web.Navigation
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<ArticlesResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["Tag"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Tag"].Value);
+    PageLayout.Content.MenuItemName = ArticlesMenus.Tag;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Articles/Tag/index.js" />
+}
+
+<abp-card>
+    <abp-card-header>
+        @if (await Authorization.IsGrantedAsync(ArticlesPermissions.Tag.Create))
+        {
+        <abp-button id="NewTagButton"
+                    text="@L["CreateTag"].Value"
+                    icon="plus"
+                    button-type="Primary" />
+        }
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="TagTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["Name"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

@@ -1,0 +1,28 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@using Simple.Abp.Articles.Localization
+@inject IHtmlLocalizer<ArticlesResource> L
+@model Simple.Abp.Articles.Catalog.CreateModalModel
+@{
+    Layout = null;
+}
+<form method="post" data-script-class="simple.abp.modals.catalog"
+        asp-page="/Articles/Catalog/CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["CreateCatalog"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-input asp-for="ViewModel.Title" />
+            <abp-input asp-for="ViewModel.ParentId" />
+            <div class="form-group mb-1">
+                <label for="exampleTextarea">
+                    ParentId
+                </label>
+                <div id="CreateEditCatalogTree"></div>
+            </div>
+            <abp-input asp-for="ViewModel.Description" />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+
+</form>

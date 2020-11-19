@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RootNamespace></RootNamespace>
+    <AssemblyName>Simple.Abp.Articles.HttpApi.Client</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Http.Client" Version="3.3.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Simple.Abp.Articles.Application.Contracts\Simple.Abp.Articles.Application.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

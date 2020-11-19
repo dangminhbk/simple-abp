@@ -1,0 +1,18 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@using Simple.Abp.Articles.Localization
+@inject IHtmlLocalizer<ArticlesResource> L
+@model Simple.Abp.Articles.Web.Pages.Articles.Tag.CreateModalModel
+@{
+    Layout = null;
+}
+<abp-dynamic-form abp-model="ViewModel"  asp-page="CreateModal">
+    <abp-modal>
+        <abp-modal-header title="@L["CreateTag"].Value"></abp-modal-header>
+        <abp-modal-body>
+            <abp-form-content />
+        </abp-modal-body>
+        <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+    </abp-modal>
+</abp-dynamic-form>

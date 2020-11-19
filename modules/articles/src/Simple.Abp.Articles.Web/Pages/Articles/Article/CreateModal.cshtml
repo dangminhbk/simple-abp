@@ -1,0 +1,68 @@
+@page
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal;
+@using Simple.Abp.Articles.Localization
+@inject IHtmlLocalizer<ArticlesResource> L
+@model Simple.Abp.Articles.Web.Pages.Articles.Article.CreateModalModel
+@{ 
+    Layout = null;
+}
+<form method="post" data-script-class="simple.abp.modals.article" asp-page="/Articles/Article/CreateModal">
+    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <abp-modal-header title="@L["CreateArticle"].Value"></abp-modal-header>
+                <abp-modal-body>
+                    <abp-input asp-for="ViewModel.Title" />
+                    <abp-input asp-for="ViewModel.CatalogId" />
+                    <div class="form-group mb-1">
+                        <label for="exampleTextarea">
+                            CatalogId
+                            <span class="text-danger">*</span>
+                        </label>
+                        <div id="CreateEditCatalogTree" class="tree-demo">
+                        </div>
+                        <span class="text-danger field-validation-valid"
+                              data-valmsg-for="ViewModel.CatalogId" data-valmsg-replace="true">
+                        </span>
+                    </div>
+
+                    <abp-input asp-for="ViewModel.SEOPath" />
+                    <abp-input asp-for="ViewModel.Tag" />
+
+                    <div class="form-group">
+                        <label>Tag</label>
+                        <select class="form-control select2" id="tagSelect2" multiple>
+                        </select>
+                        <span class="text-danger field-validation-valid"
+                              data-valmsg-for="ViewModel.Tag" data-valmsg-replace="true">
+                        </span>
+                    </div>
+
+                    <div class="form-group mb-1">
+                        <label for="exampleTextarea">
+                            Summary
+                        </label>
+                        <textarea asp-for="ViewModel.Summary" class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <abp-input asp-for="ViewModel.IsTop" />
+                    <abp-input asp-for="ViewModel.IsRefinement" />
+                    <abp-select asp-for="ViewModel.State" />
+                    <abp-input asp-for="ViewModel.Order" />
+                    <div class="form-group mb-1">
+                        <label for="exampleTextarea">
+                            Content
+                            <span class="text-danger">*</span>
+                        </label>
+                        <textarea asp-for="ViewModel.Content" class="form-control" rows="3"></textarea>
+                        <span class="text-danger field-validation-valid"
+                              data-valmsg-for="ViewModel.Content" data-valmsg-replace="true">
+                        </span>
+                    </div>
+                </abp-modal-body>
+                <abp-modal-footer buttons="@(AbpModalButtons.Cancel|AbpModalButtons.Save)"></abp-modal-footer>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,57 @@
+@page
+@using Simple.Abp.Articles.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Simple.Abp.Articles.Web.Pages.Articles.Catalog
+@using Simple.Abp.Articles.Localization
+@using Simple.Abp.Articles.Web.Navigation
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<ArticlesResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["Catalog"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Catalog"].Value);
+    PageLayout.Content.MenuItemName = ArticlesMenus.Catalog;
+}
+
+@section scripts
+{
+    <abp-script src="/libs/jquyer-tree/jstree.bundle.js" />
+    <abp-script src="/Pages/Articles/Catalog/catalog-tree.js" />
+    <abp-script src="/Pages/Articles/Catalog/catalog-modal.js" />
+    <abp-script src="/Pages/Articles/Catalog/index.js" />
+}
+@section styles
+{
+    <abp-style src="/libs/jquyer-tree/css/jstree.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        @if (await Authorization.IsGrantedAsync(ArticlesPermissions.Catalog.Create))
+        {
+            <a href="javascript:void(0)" id="NewCatalogButton" class="btn btn-light btn-shadow font-weight-bold mr-2">
+                @L["CreateCatalog"].Value
+            </a>
+        }
+
+        @if (await Authorization.IsGrantedAsync(ArticlesPermissions.Catalog.Update))
+        {
+            <a href="javascript:void(0);" id="UpdateCatalogButton" class="btn btn-success btn-shadow font-weight-bold mr-2">
+                @L["UpdateCatalogButton"].Value
+            </a>
+        }
+
+        @if (await Authorization.IsGrantedAsync(ArticlesPermissions.Catalog.Delete))
+        {
+            <a href="javascript:void(0);" id="DeleteCatalogButton" class="btn btn-primary btn-shadow font-weight-bold mr-2">
+                @L["DeleteCatalogButton"].Value
+            </a>
+        }
+    </abp-card-header>
+    <abp-card-body>
+        <div id="catalogTree"></div>
+    </abp-card-body>
+</abp-card>

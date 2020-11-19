@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Simple.Abp.Articles.Web</RootNamespace>
+    <OutputType>Library</OutputType>
+    <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Pages\Articles\Article\article-modal.js" />
+    <None Remove="Pages\Articles\Article\index.js" />
+    <None Remove="Pages\Articles\Catalog\catalog-modal.js" />
+    <None Remove="Pages\Articles\Catalog\catalog-tree.js" />
+    <None Remove="Pages\Articles\Catalog\index.js" />
+    <None Remove="Pages\Articles\Tag\index.js" />
+    <None Remove="Pages\Articles\Tag\tag-select2.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Pages\Articles\Article\article-modal.js" />
+    <EmbeddedResource Include="Pages\Articles\Article\index.js" />
+    <EmbeddedResource Include="Pages\Articles\Catalog\catalog-modal.js" />
+    <EmbeddedResource Include="Pages\Articles\Catalog\catalog-tree.js" />
+    <EmbeddedResource Include="Pages\Articles\Catalog\index.js" />
+    <EmbeddedResource Include="Pages\Articles\Tag\index.js" />
+    <EmbeddedResource Include="Pages\Articles\Tag\tag-select2.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.AutoMapper" Version="3.3.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="3.3.1" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Simple.Abp.Articles.HttpApi\Simple.Abp.Articles.HttpApi.csproj" />
+  </ItemGroup>
+
+</Project>

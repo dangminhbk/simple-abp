@@ -1,0 +1,10 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+
+    "Menu:ArticlesManager": "文章管理",
+    "Menu:Article": "文章",
+    "Menu:Catalog": "类别",
+    "Menu:Tag": "标签"
+  }
+}
