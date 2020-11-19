@@ -19,4 +19,13 @@
     <Folder Include="Shared\" />
   </ItemGroup>
   
+  <ItemGroup>
+    <None Update="deploy.sh">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  
 </Project>

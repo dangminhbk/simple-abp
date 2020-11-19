@@ -1,6 +1,7 @@
 using Abp.AspNetCore.Mvc.UI.Theme.Metronic;
 using Localization.Resources.AbpUi;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +9,9 @@ using Simple.Abp.Account.Web;
 using Simple.Abp.Blog.EntityFrameworkCore;
 using Simple.Abp.Blog.IdentityServer.Menus;
 using Simple.Abp.Blog.Localization;
+using System;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
@@ -16,6 +19,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
+using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
@@ -35,6 +39,25 @@ namespace Simple.Abp.Blog
         )]
     public class BlogIdentityServerModule : AbpModule
     {
+        private void PreConfigureCertificates(IConfiguration configuration)
+        {
+            var filePath = Path.Combine(AppContext.BaseDirectory, configuration["Certificates:CerPath"]);
+            if (!File.Exists(filePath))
+                return;
+
+            PreConfigure<AbpIdentityServerBuilderOptions>(options =>
+            {
+                options.AddDeveloperSigningCredential = false;
+
+            });
+
+            PreConfigure<IIdentityServerBuilder>(opt =>
+            {
+                var certificate2 = new X509Certificate2(filePath, configuration["Certificates:Password"]);
+                opt.AddSigningCredential(certificate2);
+            });
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             var hostingEnvironment = context.Services.GetHostingEnvironment();
@@ -99,6 +122,8 @@ namespace Simple.Abp.Blog
             });
         }
 
+      
+
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
@@ -116,6 +141,8 @@ namespace Simple.Abp.Blog
                 app.UseErrorPage();
             }
 
+            ConfigureEndpointHttps(app);
+
             app.UseCorrelationId();
             app.UseVirtualFiles();
             app.UseRouting();
@@ -125,6 +152,24 @@ namespace Simple.Abp.Blog
             app.UseAuthorization();
             app.UseAuditing();
             app.UseConfiguredEndpoints();
+        
         }
+
+        private void ConfigureEndpointHttps(IApplicationBuilder app)
+        {
+            var forwardOptions = new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                RequireHeaderSymmetry = false
+            };
+
+            forwardOptions.KnownNetworks.Clear();
+            forwardOptions.KnownProxies.Clear();
+
+            // ref: https://github.com/aspnet/Docs/issues/2384
+            app.UseForwardedHeaders(forwardOptions);
+        }
+
+
     }
 }
