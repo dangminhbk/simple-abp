@@ -107,24 +107,8 @@ namespace Simple.Abp.Blog.IdentityServer
             var configurationSection = _configuration.GetSection("IdentityServer:Clients");
 
             //Web Client
-            var webClientId = configurationSection["Blog_Web:ClientId"];
-            if (!webClientId.IsNullOrWhiteSpace())
-            {
-                var webClientRootUrl = configurationSection["Blog_Web:RootUrl"].EnsureEndsWith('/');
-
-                /* Blog_Web client is only needed if you created a tiered
-                 * solution. Otherwise, you can delete this client. */
-
-                await CreateClientAsync(
-                    name: webClientId,
-                    scopes: commonScopes,
-                    grantTypes: new[] {"hybrid"},
-                    secret: (configurationSection["Blog_Web:ClientSecret"] ?? "1q2w3e*").Sha256(),
-                    redirectUri: $"{webClientRootUrl}signin-oidc",
-                    postLogoutRedirectUri: $"{webClientRootUrl}signout-callback-oidc",
-                    frontChannelLogoutUri: $"{webClientRootUrl}Account/FrontChannelLogout"
-                );
-            }
+            await CreateWebClient(commonScopes, configurationSection, "Blog_Web");
+            await CreateWebClient(commonScopes, configurationSection, "Blog_Front_Web");
 
             //Console Test / Angular Client
             var consoleAndAngularClientId = configurationSection["Blog_App:ClientId"];
@@ -135,7 +119,7 @@ namespace Simple.Abp.Blog.IdentityServer
                 await CreateClientAsync(
                     name: consoleAndAngularClientId,
                     scopes: commonScopes,
-                    grantTypes: new[] {"password", "client_credentials", "authorization_code"},
+                    grantTypes: new[] { "password", "client_credentials", "authorization_code" },
                     secret: (configurationSection["Blog_App:ClientSecret"] ?? "1q2w3e*").Sha256(),
                     requireClientSecret: false,
                     redirectUri: webClientRootUrl,
@@ -158,6 +142,28 @@ namespace Simple.Abp.Blog.IdentityServer
                     requirePkce: true,
                     redirectUri: $"{blazorRootUrl}/authentication/login-callback",
                     postLogoutRedirectUri: $"{blazorRootUrl}/authentication/logout-callback"
+                );
+            }
+        }
+
+        private async Task CreateWebClient(string[] commonScopes, IConfigurationSection configurationSection, string client)
+        {
+            var webClientId = configurationSection[$"{client}:ClientId"];
+            if (!webClientId.IsNullOrWhiteSpace())
+            {
+                var webClientRootUrl = configurationSection[$"{client}:RootUrl"].EnsureEndsWith('/');
+
+                /* Blog_Web client is only needed if you created a tiered
+                 * solution. Otherwise, you can delete this client. */
+
+                await CreateClientAsync(
+                    name: webClientId,
+                    scopes: commonScopes,
+                    grantTypes: new[] { "hybrid" },
+                    secret: (configurationSection[$"{client}:ClientSecret"] ?? "1q2w3e*").Sha256(),
+                    redirectUri: $"{webClientRootUrl}signin-oidc",
+                    postLogoutRedirectUri: $"{webClientRootUrl}signout-callback-oidc",
+                    frontChannelLogoutUri: $"{webClientRootUrl}Account/FrontChannelLogout"
                 );
             }
         }

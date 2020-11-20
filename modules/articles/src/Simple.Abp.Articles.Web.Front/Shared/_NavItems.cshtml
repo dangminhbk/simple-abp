@@ -17,5 +17,16 @@
     <a href="/projects">Projects</a>
 </li>
 <li>
-    <a href="/about">About</a>
+    @if (User.Identity.IsAuthenticated)
+    {   
+        <a href="/Account/Logout">
+            <i class="far fa-id-card"></i>
+        </a>
+    }
+    else
+    {
+        <a href="/Account/Login">
+            <i class="fa fa-user"></i>
+        </a>
+    }
 </li>

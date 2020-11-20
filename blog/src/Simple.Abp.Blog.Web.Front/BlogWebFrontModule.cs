@@ -1,12 +1,19 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Simple.Abp.Articles.Web.Front;
+using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Volo.Abp;
+using Volo.Abp.AspNetCore.Authentication.OpenIdConnect;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.Http.Client.IdentityModel.Web;
 using Volo.Abp.Modularity;
+using Volo.Abp.UI.Navigation.Urls;
 
 namespace Simple.Abp.Blog.Web.Front
 {
@@ -14,6 +21,8 @@ namespace Simple.Abp.Blog.Web.Front
     [DependsOn(
         typeof(AbpAutofacModule),
         typeof(AbpAutoMapperModule),
+        typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
+        typeof(AbpHttpClientIdentityModelWebModule),
         typeof(AbpArticlesWebFrontModule),
         typeof(BlogHttpApiModule),
         typeof(BlogHttpApiClientModule)
@@ -31,13 +40,56 @@ namespace Simple.Abp.Blog.Web.Front
                 //options.AddProfile<KAWebAutoMapperProfile>();
             });
 
+            ConfigureUrls(configuration);
+
+            ConfigureAuthentication(context,configuration);
+
             context.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
+        }
+        private void ConfigureUrls(IConfiguration configuration)
+        {
+            Configure<AppUrlOptions>(options =>
+            {
+                options.Applications["MVC"].RootUrl = configuration["App:SelfUrl"];
+            });
+        }
+
+        private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
+        {
+            context.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies", options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromDays(365);
+            })
+            .AddAbpOpenIdConnect("oidc", options =>
+            {
+                options.Authority = configuration["AuthServer:Authority"];
+                options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+
+                options.ClientId = configuration["AuthServer:ClientId"];
+                options.ClientSecret = configuration["AuthServer:ClientSecret"];
+
+                options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+
+                options.Scope.Add("role");
+                options.Scope.Add("email");
+                options.Scope.Add("phone");
+                options.Scope.Add("Blog");
+            });
         }
 
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
             var env = context.GetEnvironment();
+
+            ConfigureEndpointHttps(app);
 
             app.UseVirtualFiles();
 
@@ -50,6 +102,22 @@ namespace Simple.Abp.Blog.Web.Front
             app.UseConfiguredEndpoints(options => {
                 options.MapRazorPages();
             });
+        }
+
+
+        private void ConfigureEndpointHttps(IApplicationBuilder app)
+        {
+            var forwardOptions = new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                RequireHeaderSymmetry = false
+            };
+
+            forwardOptions.KnownNetworks.Clear();
+            forwardOptions.KnownProxies.Clear();
+
+            // ref: https://github.com/aspnet/Docs/issues/2384
+            app.UseForwardedHeaders(forwardOptions);
         }
 
     }

@@ -19,6 +19,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.Auditing;
 using Volo.Abp.Autofac;
+using Volo.Abp.Identity.AspNetCore;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
@@ -39,6 +40,17 @@ namespace Simple.Abp.Blog
         )]
     public class BlogIdentityServerModule : AbpModule
     {
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            var configuration = context.Services.GetConfiguration();
+
+            context.Services.PreConfigure<AbpIdentityAspNetCoreOptions>(options =>
+            {
+                options.ConfigureAuthentication = false;
+            });
+
+            PreConfigureCertificates(configuration);
+        }
         private void PreConfigureCertificates(IConfiguration configuration)
         {
             var filePath = Path.Combine(AppContext.BaseDirectory, configuration["Certificates:CerPath"]);
@@ -169,7 +181,5 @@ namespace Simple.Abp.Blog
             // ref: https://github.com/aspnet/Docs/issues/2384
             app.UseForwardedHeaders(forwardOptions);
         }
-
-
     }
 }

@@ -8,7 +8,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Simple.Abp.Articles.Web;
 using Simple.Abp.Blog.Localization;
-using Simple.Abp.Blog.MultiTenancy;
 using Simple.Abp.Blog.Web.Menus;
 using System;
 using System.IO;
@@ -77,36 +76,34 @@ namespace Simple.Abp.Blog.Web
             });
         }
 
-       
-
         private void ConfigureAuthentication(ServiceConfigurationContext context, IConfiguration configuration)
         {
             context.Services.AddAuthentication(options =>
-                {
-                    options.DefaultScheme = "Cookies";
-                    options.DefaultChallengeScheme = "oidc";
-                })
-                .AddCookie("Cookies", options =>
-                {
-                    options.ExpireTimeSpan = TimeSpan.FromDays(365);
-                })
-                .AddAbpOpenIdConnect("oidc", options =>
-                {
-                    options.Authority = configuration["AuthServer:Authority"];
-                    options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
-                    options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
+            {
+                options.DefaultScheme = "Cookies";
+                options.DefaultChallengeScheme = "oidc";
+            })
+            .AddCookie("Cookies", options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromDays(365);
+            })
+            .AddAbpOpenIdConnect("oidc", options =>
+            {
+                options.Authority = configuration["AuthServer:Authority"];
+                options.RequireHttpsMetadata = Convert.ToBoolean(configuration["AuthServer:RequireHttpsMetadata"]);
+                options.ResponseType = OpenIdConnectResponseType.CodeIdToken;
 
-                    options.ClientId = configuration["AuthServer:ClientId"];
-                    options.ClientSecret = configuration["AuthServer:ClientSecret"];
+                options.ClientId = configuration["AuthServer:ClientId"];
+                options.ClientSecret = configuration["AuthServer:ClientSecret"];
 
-                    options.SaveTokens = true;
-                    options.GetClaimsFromUserInfoEndpoint = true;
+                options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
 
-                    options.Scope.Add("role");
-                    options.Scope.Add("email");
-                    options.Scope.Add("phone");
-                    options.Scope.Add("Blog");
-                });
+                options.Scope.Add("role");
+                options.Scope.Add("email");
+                options.Scope.Add("phone");
+                options.Scope.Add("Blog");
+            });
         }
 
         private void ConfigureAutoMapper()
