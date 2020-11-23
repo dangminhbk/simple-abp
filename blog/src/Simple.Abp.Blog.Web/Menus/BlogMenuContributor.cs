@@ -46,7 +46,7 @@ namespace Simple.Abp.Blog.Web.Menus
             if (identityGroupMenu != null)
                 identityGroupMenu.Icon = "far fa-id-card";
 
-            context.Menu.Items.Insert(0, new ApplicationMenuItem("Blog.Home", l["Menu:Home"], "~/"));
+            context.Menu.Items.Insert(0, new ApplicationMenuItem("Blog.Home", l["Menu:Home"], "~/", "fa fa-home"));
 
             return Task.CompletedTask;
         }

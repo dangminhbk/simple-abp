@@ -149,25 +149,31 @@ namespace Simple.Abp.Articles
 
         public async Task<List<CatalogDto>> FindAllCatalogAsync()
         {
-            var query = _repository.WithDetails().GroupBy(c => c.Catalog.Title)
-                .Select(c=>new CatalogDto { 
+            var query = _repository.WithDetails();
+            query = JoinPublicFilteredQuery(query);
+
+            var catalogDtoQuery = query.GroupBy(c => c.Catalog.Title)
+                .Select(c => new CatalogDto
+                {
                     Title = c.Key,
-                    ArticleCount  = c.Count()
+                    ArticleCount = c.Count()
                 });
 
-            return await _asyncExecuter.ToListAsync(query);
+            return await _asyncExecuter.ToListAsync(catalogDtoQuery);
         }
 
         public async Task<List<TagDto>> FindAllTagAsync()
         {
-           var query =  _repository.GroupBy(c => c.Tag)
-                .Select(c => new TagDto
-                {
-                    Name =  c.Key,
-                    ArticleCount = c.Count()
-                });
+            var query = JoinPublicFilteredQuery(_repository);
 
-            return await _asyncExecuter.ToListAsync(query);
+            var tagDtoQuery = query.GroupBy(c => c.Tag)
+                 .Select(c => new TagDto
+                 {
+                     Name = c.Key,
+                     ArticleCount = c.Count()
+                 });
+
+            return await _asyncExecuter.ToListAsync(tagDtoQuery);
         }
     }
 }

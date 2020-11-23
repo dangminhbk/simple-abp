@@ -1,9 +1,9 @@
 {
   "culture": "en",
   "texts": {
-    "Menu:ArticlesManager": "ArticlesManager",
-    "Menu:Article": "Article",
-    "Menu:Catalog": "Catalog",
-    "Menu:Tag": "Tag"
+    "Menu:ArticlesManager": "articles management",
+    "Menu:Article": "Articles",
+    "Menu:Catalog": "Catalogs",
+    "Menu:Tag": "Tags"
   }
 }
