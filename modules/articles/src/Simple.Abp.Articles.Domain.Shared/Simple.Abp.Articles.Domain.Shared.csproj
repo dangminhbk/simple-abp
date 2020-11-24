@@ -5,6 +5,11 @@
     <RootNamespace></RootNamespace>
     <AssemblyName>Simple.Abp.Articles.Domain.Shared</AssemblyName>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <PackageIcon>logo.png</PackageIcon>
+    <Product>Simple.Abp.Articles</Product>
+    <Company>keepactive.cn</Company>
+    <Authors>aqa365</Authors>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,6 +26,10 @@
     <None Remove="Simple\Abp\Articles\Localization\Articles\vi.json" />
     <None Remove="Simple\Abp\Articles\Localization\Articles\zh-Hans.json" />
     <None Remove="Simple\Abp\Articles\Localization\Articles\zh-Hant.json" />
+    <None Include="..\..\..\..\..\..\Users\admin\Desktop\blog-html\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

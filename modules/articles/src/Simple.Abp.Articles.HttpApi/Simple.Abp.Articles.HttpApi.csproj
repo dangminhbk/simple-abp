@@ -4,6 +4,11 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace></RootNamespace>
     <OutputType>Library</OutputType>
+    <Product>Simple.Abp.Articles</Product>
+    <Company>keepactive.cn</Company>
+    <Authors>aqa365</Authors>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,6 +17,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Simple.Abp.Articles.Application.Contracts\Simple.Abp.Articles.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Users\admin\Desktop\blog-html\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

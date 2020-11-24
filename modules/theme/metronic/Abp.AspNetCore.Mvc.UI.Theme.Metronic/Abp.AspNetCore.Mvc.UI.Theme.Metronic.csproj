@@ -4,6 +4,12 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <Authors>aqa365</Authors>
+    <Company>keepactive.cn</Company>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageId>Simple.Abp.AspNetCore.Mvc.UI.Theme.Metronic</PackageId>
+    <Product>Simple.Abp.AspNetCore.Mvc.UI.Theme.Metronic</Product>
   </PropertyGroup>
 
   <ItemGroup>
@@ -419,6 +425,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\..\..\..\..\..\Users\admin\Desktop\blog-html\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
     <None Include="wwwroot\libs\jquyer-tree\jstree.bundle.js" />
     <None Include="wwwroot\libs\tinymce\icons\default\icons.min.js" />
     <None Include="wwwroot\libs\tinymce\jquery.tinymce.min.js" />

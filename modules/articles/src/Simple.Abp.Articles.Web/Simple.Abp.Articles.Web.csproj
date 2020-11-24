@@ -5,6 +5,11 @@
     <RootNamespace>Simple.Abp.Articles.Web</RootNamespace>
     <OutputType>Library</OutputType>
     <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <Product>Simple.Abp.Articles</Product>
+    <Company>keepactive.cn</Company>
+    <Authors>aqa365</Authors>
+    <IsPackable>true</IsPackable>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,6 +20,10 @@
     <None Remove="Pages\Articles\Catalog\index.js" />
     <None Remove="Pages\Articles\Tag\index.js" />
     <None Remove="Pages\Articles\Tag\tag-select2.js" />
+    <None Include="..\..\..\..\..\..\Users\admin\Desktop\blog-html\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

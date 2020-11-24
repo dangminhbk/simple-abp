@@ -3,6 +3,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace></RootNamespace>
+    <Company>keepactive.cn</Company>
+    <Authors>aqa365</Authors>
+    <Product>Simple.Abp.Articles</Product>
+    <PackageIcon>logo.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,6 +15,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Simple.Abp.Articles.Domain.Shared\Simple.Abp.Articles.Domain.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\..\..\Users\admin\Desktop\blog-html\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
