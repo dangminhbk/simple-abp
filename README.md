@@ -1,6 +1,6 @@
 # simple-abp
 在ABP VNext的基础上完善基础设施，目前暂定加入如下功能
-  -- 主题模块
+  <p>-- 主题模块</p>
   -- geetest 模块
   -- TencentCos 模块
   -- 管理功能
