@@ -19,7 +19,7 @@
 </ul>
 
 # simple-abp-blog
-在完善后的基础设施上开发的一个博客案例 <a href="https://www.keepactive.cn/" target="_blank">https://www.keepactive.cn/</a>
+在完善后的基础设施上开发的一个博客案例 <a href="https://www.keepactive.cn" target="_blank">https://www.keepactive.cn</a>
 <ul>
    <li><a href="https://github.com/aqa365/simple-abp/tree/main/modules/articles" target="_blank">文章模块</a></li>
    <li>评论模块</li>
