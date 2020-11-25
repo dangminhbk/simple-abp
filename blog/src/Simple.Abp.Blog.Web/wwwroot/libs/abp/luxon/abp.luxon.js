@@ -32,7 +32,7 @@ var abp = abp || {};
                 .fromFormat(
                     getObjectValue(form, field),
                     abp.localization.currentCulture.dateTimeFormat.shortDatePattern,
-                    {locale: abp.localization.currentCulture.cultureName}
+                    { locale: abp.localization.currentCulture.cultureName }
                 );
 
             if (!dateTime.invalid) {
