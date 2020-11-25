@@ -24,3 +24,6 @@
    <li><a href="https://github.com/aqa365/simple-abp/tree/main/modules/articles" target="_blank">文章模块</a></li>
    <li>评论模块</li>
 </ul>
+
+# nuget-packages
+<li><a href="https://www.nuget.org/packages?q=simple.abp" target="_blank">simple.abp</a></li>
