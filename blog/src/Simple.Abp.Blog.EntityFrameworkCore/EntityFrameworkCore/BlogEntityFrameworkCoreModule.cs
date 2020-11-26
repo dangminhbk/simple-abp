@@ -7,6 +7,7 @@ using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace Simple.Abp.Blog.EntityFrameworkCore
 {
@@ -17,6 +18,7 @@ namespace Simple.Abp.Blog.EntityFrameworkCore
         typeof(AbpPermissionManagementEntityFrameworkCoreModule),
         typeof(AbpEntityFrameworkCoreMySQLModule),
         typeof(AbpAuditLoggingEntityFrameworkCoreModule),
+        typeof(AbpSettingManagementEntityFrameworkCoreModule),
         typeof(AbpArticlesEntityFrameworkCoreModule)
         )]
     public class BlogEntityFrameworkCoreModule : AbpModule

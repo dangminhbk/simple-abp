@@ -7,7 +7,7 @@ using Volo.Abp.AspNetCore.Mvc.UI.Theming;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
-using Localization.Resources.AbpUi;
+
 
 namespace Abp.AspNetCore.Mvc.UI.Theme.Metronic
 {

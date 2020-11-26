@@ -5,6 +5,7 @@ using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.IdentityServer.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
 
 namespace Simple.Abp.Blog.EntityFrameworkCore
 {
@@ -31,6 +32,7 @@ namespace Simple.Abp.Blog.EntityFrameworkCore
             builder.ConfigureAuditLogging();
             builder.ConfigureIdentity();
             builder.ConfigureIdentityServer();
+            builder.ConfigureSettingManagement();
             builder.ConfigureArticles();
 
             /* Configure your own tables/entities inside the ConfigureBlog method */

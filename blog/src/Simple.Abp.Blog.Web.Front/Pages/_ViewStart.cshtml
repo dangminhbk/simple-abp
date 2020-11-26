@@ -1,6 +1,7 @@
-﻿@{
-    Layout = "/Shared/_Layout.cshtml";
+﻿@using Volo.Abp.AspNetCore.Mvc.UI.Theming
+@inject ITheme Theme
+@{
+    Layout = Theme.GetAccountLayout();
     ViewBag.Title = ".Net Blog";
     ViewBag.PageTitle = ".Net Blog";
-    ViewBag.StaticSitHost = "https://ka-1252696628.cos.ap-beijing.myqcloud.com";
 }

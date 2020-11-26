@@ -1,0 +1,27 @@
+﻿@using Abp.AspNetCore.Mvc.UI.Theme.Cactus
+@using Abp.AspNetCore.Mvc.UI.Theme.Metronic.Themes.Metronic.Components.Menu
+@inject FrontHelper FrontHelper
+    <header id="header">
+        <a href="/">
+            <div id="logo" style="background-image: url(/logo.png);"></div>
+        </a>
+        <div id="title">
+            <h1>
+                @ViewBag.PageTitle
+                <span style="font-size:11px" id="theme-switch">
+                    <i class="fa fa-toggle-@(FrontHelper.IsThemeNight()?"on":"off")"></i>
+                </span>
+            </h1>
+        </div>
+
+        <div id="nav">
+            <ul>
+                <li class="icon">
+                    <a href="javascript:void(0)"><i class="fas fa-bars fa-2x"></i></a>
+                </li>
+
+                @(await Component.InvokeAsync<MainMenuViewComponent>())
+            </ul>
+        </div>
+
+    </header>

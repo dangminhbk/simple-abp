@@ -1,0 +1,7 @@
+﻿@page
+@using Simple.Abp.Blog.Web.Front.Shared.Components.About
+@model Simple.Abp.Blog.Web.Front.Pages.AboutModel
+@{
+    ViewBag.Title = "About";
+}
+@(await Component.InvokeAsync<AboutViewComponent>())

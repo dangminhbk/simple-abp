@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Abp.AspNetCore.Mvc.UI.Theme.Cactus;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Simple.Abp.Articles.Web.Front;
+using Simple.Abp.Blog.Web.Menus;
 using System;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -13,6 +15,7 @@ using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Http.Client.IdentityModel.Web;
 using Volo.Abp.Modularity;
+using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 
 namespace Simple.Abp.Blog.Web.Front
@@ -24,6 +27,7 @@ namespace Simple.Abp.Blog.Web.Front
         typeof(AbpAspNetCoreAuthenticationOpenIdConnectModule),
         typeof(AbpHttpClientIdentityModelWebModule),
         typeof(AbpArticlesWebFrontModule),
+        typeof(AbpAspNetCoreMvcUiCactusThemeModule),
         typeof(BlogHttpApiModule),
         typeof(BlogHttpApiClientModule)
     )]
@@ -41,8 +45,16 @@ namespace Simple.Abp.Blog.Web.Front
             });
 
             ConfigureUrls(configuration);
-
             ConfigureAuthentication(context,configuration);
+            ConfigureNavigationServices(configuration);
+
+            Configure<CactusOptions>(options =>
+            {
+                options.WebsiteFiling = "鲁ICP备19044904号-1";
+                options.WebsiteFilingUrl = "http://beian.miit.gov.cn";
+                options.WebInfo = "Copyright &copy; 2019-2020";
+                options.CdnHost = "https://ka-1252696628.cos.ap-beijing.myqcloud.com";
+            });
 
             context.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
         }
@@ -84,6 +96,14 @@ namespace Simple.Abp.Blog.Web.Front
             });
         }
 
+        private void ConfigureNavigationServices(IConfiguration configuration)
+        {
+            Configure<AbpNavigationOptions>(options =>
+            {
+                options.MenuContributors.Add(new BlogMenuContributor(configuration));
+            });
+        }
+
         public override void OnApplicationInitialization(ApplicationInitializationContext context)
         {
             var app = context.GetApplicationBuilder();
@@ -103,7 +123,6 @@ namespace Simple.Abp.Blog.Web.Front
                 options.MapRazorPages();
             });
         }
-
 
         private void ConfigureEndpointHttps(IApplicationBuilder app)
         {

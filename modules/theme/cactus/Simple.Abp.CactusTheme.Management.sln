@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30309.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Abp.AspNetCore.Mvc.UI.Theme.Cactus", "src\Abp.AspNetCore.Mvc.UI.Theme.Cactus\Abp.AspNetCore.Mvc.UI.Theme.Cactus.csproj", "{E162DF0A-2291-442E-A99E-67B01C79E460}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E6AC4A24-DDB4-41F4-92CA-68D6EE7462D1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E162DF0A-2291-442E-A99E-67B01C79E460}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E162DF0A-2291-442E-A99E-67B01C79E460}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E162DF0A-2291-442E-A99E-67B01C79E460}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E162DF0A-2291-442E-A99E-67B01C79E460}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E162DF0A-2291-442E-A99E-67B01C79E460} = {E6AC4A24-DDB4-41F4-92CA-68D6EE7462D1}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {25CA2146-2ED4-4071-877F-192225A50FA1}
+	EndGlobalSection
+EndGlobal

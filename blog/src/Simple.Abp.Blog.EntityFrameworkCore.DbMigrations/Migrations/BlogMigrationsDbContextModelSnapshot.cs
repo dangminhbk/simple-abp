@@ -1766,6 +1766,37 @@ namespace Simple.Abp.Blog.Migrations
                     b.ToTable("AbpPermissionGrants");
                 });
 
+            modelBuilder.Entity("Volo.Abp.SettingManagement.Setting", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("varchar(128) CHARACTER SET utf8mb4")
+                        .HasMaxLength(128);
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("ProviderName")
+                        .HasColumnType("varchar(64) CHARACTER SET utf8mb4")
+                        .HasMaxLength(64);
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4")
+                        .HasMaxLength(2048);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name", "ProviderName", "ProviderKey");
+
+                    b.ToTable("AbpSettings");
+                });
+
             modelBuilder.Entity("Simple.Abp.Articles.Article", b =>
                 {
                     b.HasOne("Simple.Abp.Articles.Catalog", "Catalog")

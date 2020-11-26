@@ -1,0 +1,19 @@
+﻿@using Abp.AspNetCore.Mvc.UI.Theme.Cactus
+@inject FrontHelper FrontHelper
+@{
+    string cdnHost = ViewBag.CdnHost;
+}
+
+<link rel="stylesheet" href="@cdnHost/libs/blog/css/font-awesome.min.css">
+@if (cdnHost.IsNullOrWhiteSpace())
+{
+    <abp-style-bundle>
+        <abp-style src="@FrontHelper.GetStyleCss()" />
+        <abp-style src="@FrontHelper.GetRtlCss()" />
+    </abp-style-bundle>
+}
+else
+{
+    <link rel="stylesheet" href="@(cdnHost)@FrontHelper.GetStyleCss()">
+    <link rel="stylesheet" href="@(cdnHost)@FrontHelper.GetRtlCss()">
+}

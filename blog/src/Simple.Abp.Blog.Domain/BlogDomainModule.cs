@@ -1,13 +1,12 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.SettingUi;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Simple.Abp.Articles;
-using Simple.Abp.Blog.MultiTenancy;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.Emailing;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityServer;
 using Volo.Abp.Modularity;
-using Volo.Abp.MultiTenancy;
 using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 
@@ -20,6 +19,7 @@ namespace Simple.Abp.Blog
         typeof(AbpPermissionManagementDomainIdentityModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpPermissionManagementDomainIdentityServerModule),
+        typeof(SettingUiDomainModule),
         typeof(AbpArticlesDomainModule),
         typeof(AbpEmailingModule)
     )]

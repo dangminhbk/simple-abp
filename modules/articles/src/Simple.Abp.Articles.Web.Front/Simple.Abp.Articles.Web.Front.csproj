@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -12,50 +12,19 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\libs\blog\%40fortawesome\fa-brands-400.woff2" />
-    <Content Remove="wwwroot\libs\blog\%40fortawesome\fa-solid-900.woff2" />
-    <Content Remove="wwwroot\libs\blog\%40fortawesome\MesloLGS-Regular.ttf" />
     <Content Remove="wwwroot\libs\blog\css\detail.css" />
-    <Content Remove="wwwroot\libs\blog\css\font-awesome.min.css" />
-    <Content Remove="wwwroot\libs\blog\css\rtl-light.css" />
-    <Content Remove="wwwroot\libs\blog\css\rtl.css" />
-    <Content Remove="wwwroot\libs\blog\css\style-light.css" />
-    <Content Remove="wwwroot\libs\blog\css\style.css" />
     <Content Remove="wwwroot\libs\blog\js\detail.js" />
-    <Content Remove="wwwroot\libs\blog\js\main.js" />
-    <Content Remove="wwwroot\libs\prism\prism.css" />
-    <Content Remove="wwwroot\libs\prism\prism.js" />
-    <Content Remove="wwwroot\libs\prism\themes\prism-coy.css" />
-    <Content Remove="wwwroot\libs\prism\themes\prism-dark.css" />
-    <Content Remove="wwwroot\libs\prism\themes\prism-okaidia.css" />
-    <Content Remove="wwwroot\libs\prism\themes\prism-solarizedlight.css" />
-    <Content Remove="wwwroot\libs\prism\themes\prism-tomorrow.css" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="wwwroot\libs\blog\@fortawesome\fa-brands-400.woff2" />
-    <EmbeddedResource Include="wwwroot\libs\blog\@fortawesome\fa-solid-900.woff2" />
-    <EmbeddedResource Include="wwwroot\libs\blog\@fortawesome\MesloLGS-Regular.ttf" />
     <EmbeddedResource Include="wwwroot\libs\blog\css\detail.css" />
-    <EmbeddedResource Include="wwwroot\libs\blog\css\font-awesome.min.css" />
-    <EmbeddedResource Include="wwwroot\libs\blog\css\rtl-light.css" />
-    <EmbeddedResource Include="wwwroot\libs\blog\css\rtl.css" />
-    <EmbeddedResource Include="wwwroot\libs\blog\css\style-light.css" />
-    <EmbeddedResource Include="wwwroot\libs\blog\css\style.css" />
     <EmbeddedResource Include="wwwroot\libs\blog\js\detail.js" />
-    <EmbeddedResource Include="wwwroot\libs\blog\js\main.js" />
-    <EmbeddedResource Include="wwwroot\libs\prism\prism.css" />
-    <EmbeddedResource Include="wwwroot\libs\prism\prism.js" />
-    <EmbeddedResource Include="wwwroot\libs\prism\themes\prism-coy.css" />
-    <EmbeddedResource Include="wwwroot\libs\prism\themes\prism-dark.css" />
-    <EmbeddedResource Include="wwwroot\libs\prism\themes\prism-okaidia.css" />
-    <EmbeddedResource Include="wwwroot\libs\prism\themes\prism-solarizedlight.css" />
-    <EmbeddedResource Include="wwwroot\libs\prism\themes\prism-tomorrow.css" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI" Version="3.3.1" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="3.3.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="3.3.1" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.0" />
   </ItemGroup>
 

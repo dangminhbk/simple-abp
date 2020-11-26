@@ -13,12 +13,9 @@
   
   <ItemGroup>
     <ProjectReference Include="..\..\..\modules\articles\src\Simple.Abp.Articles.Web.Front\Simple.Abp.Articles.Web.Front.csproj" />
+    <ProjectReference Include="..\..\..\modules\theme\cactus\src\Abp.AspNetCore.Mvc.UI.Theme.Cactus\Abp.AspNetCore.Mvc.UI.Theme.Cactus.csproj" />
     <ProjectReference Include="..\Simple.Abp.Blog.HttpApi.Client\Simple.Abp.Blog.HttpApi.Client.csproj" />
     <ProjectReference Include="..\Simple.Abp.Blog.HttpApi\Simple.Abp.Blog.HttpApi.csproj" />
-  </ItemGroup>
-  
-  <ItemGroup>
-    <Folder Include="Shared\" />
   </ItemGroup>
   
   <ItemGroup>

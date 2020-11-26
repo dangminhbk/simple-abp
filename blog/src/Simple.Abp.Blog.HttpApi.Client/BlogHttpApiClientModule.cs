@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.SettingUi;
+using Microsoft.Extensions.DependencyInjection;
 using Simple.Abp.Articles;
 using Volo.Abp.Account;
 using Volo.Abp.Identity;
@@ -12,6 +13,7 @@ namespace Simple.Abp.Blog
         typeof(AbpAccountHttpApiClientModule),
         typeof(AbpIdentityHttpApiClientModule),
         typeof(AbpPermissionManagementHttpApiClientModule),
+        typeof(SettingUiHttpApiClientModule),
         typeof(AbpArticlesHttpApiClientModule)
     )]
     public class BlogHttpApiClientModule : AbpModule

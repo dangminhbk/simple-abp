@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -14,7 +11,8 @@ namespace Simple.Abp.Articles.Web.Front
     [DependsOn(
       typeof(AbpAutoMapperModule),
       typeof(AbpAspNetCoreMvcUiModule),
-      typeof(AbpArticlesHttpApiModule)
+      typeof(AbpArticlesHttpApiModule),
+      typeof(AbpAspNetCoreMvcUiThemeSharedModule)
     )]
     public class AbpArticlesWebFrontModule:AbpModule
     {

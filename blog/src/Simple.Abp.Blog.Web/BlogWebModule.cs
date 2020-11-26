@@ -1,4 +1,5 @@
 ﻿using Abp.AspNetCore.Mvc.UI.Theme.Metronic;
+using EasyAbp.Abp.SettingUi.Web;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -38,7 +39,8 @@ namespace Simple.Abp.Blog.Web
         typeof(AbpAutofacModule),
         typeof(AbpHttpClientIdentityModelWebModule),
         typeof(AbpIdentityWebModule),
-        typeof(AbpArticlesWebModule)
+        typeof(AbpArticlesWebModule),
+        typeof(SettingUiWebModule)
         )]
     public class BlogWebModule : AbpModule
     {
@@ -125,6 +127,7 @@ namespace Simple.Abp.Blog.Web
                     options.FileSets.ReplaceEmbeddedByPhysical<BlogWebModule>(hostingEnvironment.ContentRootPath);
                     
                     options.FileSets.ReplaceEmbeddedByPhysical<BlogApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}Abp.AspNetCore.Mvc.UI.Theme.Metronic"));
+                    options.FileSets.ReplaceEmbeddedByPhysical<BlogApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, $"..{Path.DirectorySeparatorChar}..{Path.DirectorySeparatorChar}Simple.Abp.CactusTheme.Management.Domain.Shared"));
                 });
             }
         }

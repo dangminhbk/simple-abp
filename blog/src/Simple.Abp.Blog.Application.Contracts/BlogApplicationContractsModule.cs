@@ -1,4 +1,5 @@
-﻿using Simple.Abp.Articles;
+﻿using EasyAbp.Abp.SettingUi;
+using Simple.Abp.Articles;
 using Volo.Abp.Account;
 using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
@@ -13,6 +14,7 @@ namespace Simple.Abp.Blog
         typeof(AbpIdentityApplicationContractsModule),
         typeof(AbpPermissionManagementApplicationContractsModule),
         typeof(AbpArticlesApplicationContractsModule),
+        typeof(SettingUiApplicationContractsModule),
         typeof(AbpObjectExtendingModule)
     )]
     public class BlogApplicationContractsModule : AbpModule

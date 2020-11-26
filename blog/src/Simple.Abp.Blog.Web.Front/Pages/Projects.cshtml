@@ -1,0 +1,11 @@
+﻿@page
+@using Simple.Abp.Blog.Web.Front.Shared.Components.Project
+@model Simple.Abp.Blog.Web.Front.Pages.ProjectsModel
+@{
+    ViewBag.Title = "Projects";
+}
+
+<div>
+    @(await Component.InvokeAsync<ProjectViewComponent>())
+</div>
+

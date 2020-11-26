@@ -1,4 +1,5 @@
-﻿using Simple.Abp.Articles;
+﻿using EasyAbp.Abp.SettingUi;
+using Simple.Abp.Articles;
 using Simple.Abp.Blog.Localization;
 using Volo.Abp.AuditLogging;
 using Volo.Abp.Identity;
@@ -17,7 +18,8 @@ namespace Simple.Abp.Blog
         typeof(AbpIdentityDomainSharedModule),
         typeof(AbpIdentityServerDomainSharedModule),
         typeof(AbpPermissionManagementDomainSharedModule),
-         typeof(AbpArticlesDomainSharedModule)
+        typeof(SettingUiDomainSharedModule),
+        typeof(AbpArticlesDomainSharedModule)
         )]
     public class BlogDomainSharedModule : AbpModule
     {

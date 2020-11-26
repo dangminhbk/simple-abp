@@ -1,4 +1,5 @@
-﻿using Localization.Resources.AbpUi;
+﻿using EasyAbp.Abp.SettingUi;
+using Localization.Resources.AbpUi;
 using Simple.Abp.Articles;
 using Simple.Abp.Blog.Localization;
 using Simple.Abp.TencentCos;
@@ -15,6 +16,7 @@ namespace Simple.Abp.Blog
         typeof(AbpAccountHttpApiModule),
         typeof(AbpIdentityHttpApiModule),
         typeof(AbpPermissionManagementHttpApiModule),
+        typeof(SettingUiHttpApiModule),
         typeof(AbpArticlesHttpApiModule),
         typeof(SimpleAbpTencentCosModule)
         )]

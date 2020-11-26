@@ -46,13 +46,14 @@ namespace Simple.Abp.Articles
             if (entity == null)
                 return null;
 
-            // 上一个
-            var previousQuery = query.Where(c => c.CreationTime < entity.CreationTime)
-                .OrderByDescending(c => c.CreationTime);
+            // 上一篇
+            var previousQuery = query.Where(c => c.CreationTime > entity.CreationTime)
+                .OrderBy(c => c.CreationTime);
             var previousEntity = await _asyncExecuter.FirstOrDefaultAsync(previousQuery);
 
-            // 下一个
-            var nextQuery = query.Where(c => c.CreationTime > entity.CreationTime);
+            // 下一篇
+            var nextQuery = query.Where(c => c.CreationTime < entity.CreationTime)
+                .OrderByDescending(c=>c.CreationTime);
             var nextEntity = await _asyncExecuter.FirstOrDefaultAsync(nextQuery);
 
             var model = ObjectMapper.Map<Article, ArticleDto>(entity);
