@@ -40,12 +40,6 @@ namespace Simple.Abp.Blog.Web.Menus
             //}
 
             var l = context.GetLocalizer<BlogResource>();
-
-            // 替换 identitygroup 图标
-            var identityGroupMenu = context.Menu.GetAdministration()?.FindMenuItem(IdentityMenuNames.GroupName);
-            if (identityGroupMenu != null)
-                identityGroupMenu.Icon = "far fa-id-card";
-
             context.Menu.Items.Insert(0, new ApplicationMenuItem("Blog.Home", l["Menu:Home"], "~/", "fa fa-home"));
 
             return Task.CompletedTask;
