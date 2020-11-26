@@ -112,12 +112,18 @@ $(document).ready(function () {
     }
 
     $('#theme-switch').click(function () {
+
+        var cookieOptions = {
+            expires: 365
+        }
+
         var toggle = $('.fa-toggle-off', this).length;
-        if (toggle > 0) {
+        if (toggle > 0) { // 启用亮色主题
             $('.fa-toggle-off', this).addClass('fa-toggle-on')
-            $.cookie('theme', 'night');
-        } else {
-            $.cookie('theme', 'day');
+            $.cookie('theme', 'light', cookieOptions);
+        } else { // 默认暗色主题
+            
+            $.cookie('theme', 'dark', cookieOptions);
         }
 
         window.location.reload();

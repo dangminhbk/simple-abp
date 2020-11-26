@@ -7,6 +7,12 @@ using Volo.Abp.DependencyInjection;
 
 namespace Abp.AspNetCore.Mvc.UI.Theme.Cactus
 {
+    public enum EnumCactusTheme
+    {
+        Default,
+        Light
+    }
+
     public class FrontHelper: IScopedDependency
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
@@ -15,24 +21,18 @@ namespace Abp.AspNetCore.Mvc.UI.Theme.Cactus
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public bool IsThemeNight()
+        public EnumCactusTheme GetCurrentTheme()
         {
             string theme = string.Empty;
-            _httpContextAccessor.HttpContext.Request.Cookies.TryGetValue("theme", out theme);
-            return theme == "night";
-        }
-
-
-        public string GetStyleCss()
-        {
-            string light = IsThemeNight() ? "" : "-light";
-            return $"/libs/blog/css/style{light}.css";
-        }
-
-        public string GetRtlCss()
-        {
-            string light = IsThemeNight() ? "" : "-light";
-            return $"/libs/blog/css/rtl{light}.css";
+            _httpContextAccessor.HttpContext.Request.Cookies
+                .TryGetValue("theme", out theme);
+            switch (theme)
+            {
+                case "light":
+                    return EnumCactusTheme.Light;
+                default:
+                    return EnumCactusTheme.Default;
+            }
         }
 
     }

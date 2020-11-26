@@ -1,6 +1,10 @@
 ﻿@using Abp.AspNetCore.Mvc.UI.Theme.Cactus
 @using Abp.AspNetCore.Mvc.UI.Theme.Metronic.Themes.Metronic.Components.Menu
 @inject FrontHelper FrontHelper
+
+@{ 
+    var cactusTheme = FrontHelper.GetCurrentTheme();
+}
     <header id="header">
         <a href="/">
             <div id="logo" style="background-image: url(/logo.png);"></div>
@@ -9,7 +13,7 @@
             <h1>
                 @ViewBag.PageTitle
                 <span style="font-size:11px" id="theme-switch">
-                    <i class="fa fa-toggle-@(FrontHelper.IsThemeNight()?"on":"off")"></i>
+                    <i class="fa fa-toggle-@(cactusTheme==EnumCactusTheme.Light?"on":"off")"></i>
                 </span>
             </h1>
         </div>

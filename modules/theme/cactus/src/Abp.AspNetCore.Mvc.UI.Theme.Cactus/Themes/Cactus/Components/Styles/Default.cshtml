@@ -1,19 +1,29 @@
 ﻿@using Abp.AspNetCore.Mvc.UI.Theme.Cactus
+@using Abp.AspNetCore.Mvc.UI.Theme.Metronic.Themes.Metronic.Components.Styles.Light
+@using Abp.AspNetCore.Mvc.UI.Theme.Metronic.Themes.Metronic.Components.Styles.Dark
 @inject FrontHelper FrontHelper
 @{
     string cdnHost = ViewBag.CdnHost;
+    var cactusTheme = FrontHelper.GetCurrentTheme();
+
+    string font = "/libs/blog/css/font-awesome.min.css";
 }
 
-<link rel="stylesheet" href="@cdnHost/libs/blog/css/font-awesome.min.css">
-@if (cdnHost.IsNullOrWhiteSpace())
+@if(cactusTheme== EnumCactusTheme.Light)
 {
-    <abp-style-bundle>
-        <abp-style src="@FrontHelper.GetStyleCss()" />
-        <abp-style src="@FrontHelper.GetRtlCss()" />
-    </abp-style-bundle>
+    @(await Component.InvokeAsync<MainLightStylesViewComponent>());
 }
 else
 {
-    <link rel="stylesheet" href="@(cdnHost)@FrontHelper.GetStyleCss()">
-    <link rel="stylesheet" href="@(cdnHost)@FrontHelper.GetRtlCss()">
+    @(await Component.InvokeAsync<MainDarkStylesViewComponent>());
+}
+
+
+@if (cdnHost.IsNullOrWhiteSpace())
+{
+    <abp-style src="@font" />
+}
+else
+{
+    <link rel="stylesheet" href="@(cdnHost+font)">
 }
