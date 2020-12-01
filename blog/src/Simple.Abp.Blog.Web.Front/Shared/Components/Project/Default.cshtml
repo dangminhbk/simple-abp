@@ -1,26 +1,9 @@
-﻿<ul class="project-list">
-    <li class="project-item">
-        <a href="https://github.com/aqa365/simple-abp/tree/main/blog">Simple.Abp.Blog</a>
-        : <p>Abp VNext 开发的博客系统</p>
-    </li>
+﻿@model List<Simple.Abp.Articles.Dtos.ArticleDto>
 
+@foreach (var article in Model)
+{
     <li class="project-item">
-        <a href="https://github.com/aqa365/simple-abp/tree/main/modules/articles">Simple.Abp.Articles</a>
-        : <p>Abp VNext 开发的文章模块</p>
+        <p style="color:#666">@article.Summary</p>
+        : <a href="@article.FrontUrl">@article.Title</a>
     </li>
-
-    <li class="project-item">
-        <a href="https://github.com/aqa365/simple-abp/tree/main/modules/theme/metronic">Abp.AspNetCore.Mvc.UI.Theme.Metronic</a>
-        : <p>Abp VNext 开发的metronic主题模块</p>
-    </li>
-
-    <li class="project-item">
-        <a href="javascrit:void(0)">CSGO FZ</a>
-        : <p>.Net Core 开发的csgo游戏外挂，暂未开源</p>
-    </li>
-
-    <li class="project-item">
-        <a href="javascrit:void(0)">Simple.TLBB</a>
-        : <p>.Net Core 开发的新天龙八部游戏脚本。目前完善中，仅支持连点器</p>
-    </li>
-</ul>
+}

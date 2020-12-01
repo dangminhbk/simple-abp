@@ -147,34 +147,5 @@ namespace Simple.Abp.Articles
             entity = await _articleManager.UpdateAsync(entity);
             return ObjectMapper.Map<Article, ArticleDto>(entity);
         }
-
-        public async Task<List<CatalogDto>> FindAllCatalogAsync()
-        {
-            var query = _repository.WithDetails();
-            query = JoinPublicFilteredQuery(query);
-
-            var catalogDtoQuery = query.GroupBy(c => c.Catalog.Title)
-                .Select(c => new CatalogDto
-                {
-                    Title = c.Key,
-                    ArticleCount = c.Count()
-                });
-
-            return await _asyncExecuter.ToListAsync(catalogDtoQuery);
-        }
-
-        public async Task<List<TagDto>> FindAllTagAsync()
-        {
-            var query = JoinPublicFilteredQuery(_repository);
-
-            var tagDtoQuery = query.GroupBy(c => c.Tag)
-                 .Select(c => new TagDto
-                 {
-                     Name = c.Key,
-                     ArticleCount = c.Count()
-                 });
-
-            return await _asyncExecuter.ToListAsync(tagDtoQuery);
-        }
     }
 }

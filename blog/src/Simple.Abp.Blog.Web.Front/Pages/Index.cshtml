@@ -1,7 +1,7 @@
 ﻿@page
 @using Simple.Abp.Blog.Web.Front.Shared.Components.About
 @using Simple.Abp.Blog.Web.Front.Shared.Components.Project
-@using Simple.Abp.Blog.Web.Front.Shared.Components.Bilibili
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Article
 @model Simple.Abp.Blog.Web.Front.Pages.IndexModel
 @{
 }
@@ -14,21 +14,7 @@
     </span>
 
     <ul class="post-list">
-        @foreach (var article in Model.Articles)
-        {
-            <li class="post-item">
-                <div class="meta">
-                    <time datetime="@article.CreationTime" itemprop="datePublished">
-                        @article.FrontCreationTime
-                    </time>
-                </div>
-                <span>
-                    <a href="@article.FrontUrl">
-                        @article.Title
-                    </a>
-                </span>
-            </li>
-        }
+        @(await Component.InvokeAsync<ArticleViewComponent>(new { modelList = Model.Articles }))
     </ul>
 </section>
 
@@ -36,12 +22,16 @@
     <span class="h1">
         <a href="/projects">Projects</a>
     </span>
-    @(await Component.InvokeAsync<ProjectViewComponent>())
+    <ul class="project-list">
+        @(await Component.InvokeAsync<ProjectViewComponent>(new { modelList = Model.Projects }))
+    </ul>
 </section>
 
 <section id="Bilibili">
     <span class="h1">
         <a href="/bilibili">Bilibili</a>
     </span>
-    @(await Component.InvokeAsync<BilibiliViewComponent>())
+    <ul class="project-list">
+        @(await Component.InvokeAsync<ProjectViewComponent>(new { modelList = Model.Videos }))
+    </ul>
 </section>

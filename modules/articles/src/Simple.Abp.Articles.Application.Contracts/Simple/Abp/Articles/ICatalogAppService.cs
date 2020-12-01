@@ -16,5 +16,11 @@ namespace Simple.Abp.Articles
             CreateUpdateCatalogDto>
     {
         Task<List<CatalogDto>> GetTreeAsync();
+
+        /// <summary>
+        /// 获取存在文章的类别
+        /// </summary>
+        /// <returns></returns>
+        Task<List<CatalogDto>> GetExistArticleList();
     }
 }

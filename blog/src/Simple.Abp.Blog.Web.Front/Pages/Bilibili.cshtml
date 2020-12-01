@@ -1,7 +1,15 @@
 ﻿@page
-@using Simple.Abp.Blog.Web.Front.Shared.Components.Bilibili
+@using Simple.Abp.Blog.Web.Front.Shared.Components.Project
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Pagination
 @model Simple.Abp.Blog.Web.Front.Pages.BilibiliModel
 @{
     ViewBag.Title = "Bilibili";
 }
-@(await Component.InvokeAsync<BilibiliViewComponent>())
+
+<div id="archive">
+    <ul class="project-list">
+        @(await Component.InvokeAsync<ProjectViewComponent>(new { modelList = Model.Videos }))
+    </ul>
+
+    @(await Component.InvokeAsync<PaginationViewComponent>(new { vm = Model.PaginationViewModel }))
+</div>

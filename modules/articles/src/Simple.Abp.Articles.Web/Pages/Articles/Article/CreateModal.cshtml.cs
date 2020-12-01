@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Simple.Abp.Articles.Dtos;
 using Simple.Abp.Articles.Web.Pages.Articles.Article.ViewModels;
+using System;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Mvc.UI.RazorPages;
 
@@ -16,6 +17,15 @@ namespace Simple.Abp.Articles.Web.Pages.Articles.Article
         public CreateModalModel(IArticleAppService service)
         {
             _service = service;
+        }
+
+        public virtual void OnGet()
+        {
+            ViewModel = new CreateEditArticleViewModel();
+
+            var currentDate = DateTime.Now;
+            ViewModel.SEOPath = $"/{currentDate.Year}/{currentDate.Month}/{currentDate.Day}/";
+
         }
 
         public virtual async Task<IActionResult> OnPostAsync()

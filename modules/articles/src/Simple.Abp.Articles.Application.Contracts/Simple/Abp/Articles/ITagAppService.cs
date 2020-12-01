@@ -16,5 +16,11 @@ namespace Simple.Abp.Articles
             CreateUpdateTagDto>
     {
         Task<List<TagDto>> GetAllAsync();
+
+        /// <summary>
+        /// 获取存在文章的Tag
+        /// </summary>
+        /// <returns></returns>
+        Task<List<TagDto>> GetExistArticleList();
     }
 }

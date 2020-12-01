@@ -20,9 +20,5 @@ namespace Simple.Abp.Articles
         Task<ArticleDto> GetPublicAsync(Guid id);
 
         Task<ArticleDto> GetPublicBySEOAsync(string seoPath);
-
-        Task<List<CatalogDto>> FindAllCatalogAsync();
-
-        Task<List<TagDto>> FindAllTagAsync();
     }
 }

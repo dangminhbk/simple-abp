@@ -59,8 +59,8 @@ simple.abp.modals = simple.abp.modals || {};
             tinymce.init({
                 selector: _selector.content,
                 language: 'zh_CN',
-                plugins: "codesample image link",
-                toolbar: 'bold italic underline | alignleft aligncenter alignright codesample image link',
+                plugins: "code preview codesample image link",
+                toolbar: 'code preview | bold italic underline | alignleft aligncenter alignright codesample image link',
                 images_upload_url: '/oss/file/uploadRichImg?dir=image',
                 images_upload_handler: function (blobInfo, success, failure) {
                     var formdata = new FormData()

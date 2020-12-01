@@ -36,20 +36,6 @@ namespace Simple.Abp.Articles
         }
 
         [HttpGet]
-        [Route("find-all-catalog")]
-        public Task<List<CatalogDto>> FindAllCatalogAsync()
-        {
-            return _articleAppService.FindAllCatalogAsync();
-        }
-
-        [HttpGet]
-        [Route("find-all-tag")]
-        public Task<List<TagDto>> FindAllTagAsync()
-        {
-            return _articleAppService.FindAllTagAsync();
-        }
-
-        [HttpGet]
         [Route("{id}")]
         public Task<ArticleDto> GetAsync(Guid id)
         {

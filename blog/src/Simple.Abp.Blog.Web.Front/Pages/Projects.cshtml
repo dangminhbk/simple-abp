@@ -1,11 +1,17 @@
 ﻿@page
 @using Simple.Abp.Blog.Web.Front.Shared.Components.Project
+@using Simple.Abp.Articles.Web.Front.Shared.Components.Pagination
 @model Simple.Abp.Blog.Web.Front.Pages.ProjectsModel
 @{
     ViewBag.Title = "Projects";
 }
 
-<div>
-    @(await Component.InvokeAsync<ProjectViewComponent>())
+<div id="archive">
+    <ul class="project-list">
+        @(await Component.InvokeAsync<ProjectViewComponent>(new { modelList = Model.Projects }))
+    </ul>
+
+    @(await Component.InvokeAsync<PaginationViewComponent>(new { vm = Model.PaginationViewModel }))
 </div>
+
 

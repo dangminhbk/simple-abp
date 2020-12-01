@@ -11,18 +11,18 @@ namespace Simple.Abp.Articles.Web.Front.Pages
 {
     public class TagsModel : AbpPageModel
     {
-        private readonly IArticleAppService _articleAppService;
+        private readonly ITagAppService _tagAppService;
 
         public List<TagDto> Tags { get; set; }
 
-        public TagsModel(IArticleAppService articleAppService)
+        public TagsModel(ITagAppService tagAppService)
         {
-            _articleAppService = articleAppService;
+            _tagAppService = tagAppService;
         }
 
         public virtual async Task<IActionResult> OnGetAsync()
         {
-            Tags = await _articleAppService.FindAllTagAsync();
+            Tags = await _tagAppService.GetExistArticleList();
             return Page();
         }
 

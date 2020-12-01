@@ -42,6 +42,13 @@ namespace Simple.Abp.Articles
         }
 
         [HttpGet]
+        [Route("get-exist-article-list")]
+        public Task<List<CatalogDto>> GetExistArticleList()
+        {
+            return _catalogAppService.GetExistArticleList();
+        }
+
+        [HttpGet]
         public Task<PagedResultDto<CatalogDto>> GetListAsync(PagedAndSortedResultRequestDto input)
         {
             return _catalogAppService.GetListAsync(input);

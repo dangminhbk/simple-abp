@@ -11,18 +11,18 @@ namespace Simple.Abp.Articles.Web.Front.Pages
 {
     public class CatalogsModel : AbpPageModel
     {
-        private readonly IArticleAppService _articleAppService;
+        private readonly ICatalogAppService _catalogAppService;
 
         public List<CatalogDto> Catalogs { get; set; }
 
-        public CatalogsModel(IArticleAppService articleAppService)
+        public CatalogsModel(ICatalogAppService catalogAppService)
         {
-            _articleAppService = articleAppService;
+            _catalogAppService = catalogAppService;
         }
 
         public virtual async Task<IActionResult> OnGetAsync()
         {
-            Catalogs = await _articleAppService.FindAllCatalogAsync();
+            Catalogs = await _catalogAppService.GetExistArticleList();
             return Page();
         }
     }

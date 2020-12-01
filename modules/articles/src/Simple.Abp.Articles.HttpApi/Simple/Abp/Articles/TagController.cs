@@ -11,8 +11,8 @@ namespace Simple.Abp.Articles
 {
     [RemoteService]
     [Area("Articles")]
-    [ControllerName("ArticleTag")]
-    [Route("api/article-tag")]
+    [ControllerName("Tag")]
+    [Route("api/tag")]
     public class TagController : AbpController, ITagAppService
     {
 
@@ -39,6 +39,13 @@ namespace Simple.Abp.Articles
         public Task<List<TagDto>> GetAllAsync()
         {
             return _tagAppService.GetAllAsync();
+        }
+
+        [HttpGet]
+        [Route("get-exist-article-list")]
+        public Task<List<TagDto>> GetExistArticleList()
+        {
+            return _tagAppService.GetExistArticleList();
         }
 
         [HttpGet]

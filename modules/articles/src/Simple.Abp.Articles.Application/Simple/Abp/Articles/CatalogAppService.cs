@@ -1,11 +1,12 @@
 using Simple.Abp.Articles.Dtos;
 using Simple.Abp.Articles.Permissions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Linq;
 
 namespace Simple.Abp.Articles
 {
@@ -26,10 +27,33 @@ namespace Simple.Abp.Articles
         protected override string DeletePolicyName { get; set; } = ArticlesPermissions.Catalog.Delete;
 
         private readonly ICatalogRepository _repository;
-        
-        public CatalogAppService(ICatalogRepository repository) : base(repository)
+        private readonly IArticleRepository _articleRepository;
+        private readonly IAsyncQueryableExecuter _asyncExecuter;
+
+        public CatalogAppService(ICatalogRepository repository,
+            IArticleRepository articleRepository,
+            IAsyncQueryableExecuter asyncExecuter) : base(repository)
         {
             _repository = repository;
+            _articleRepository = articleRepository;
+            _asyncExecuter = asyncExecuter;
+        }
+
+        private List<Catalog> FindChilds(Catalog parentCatalog, List<Catalog> catalogs)
+        {
+            var childs = catalogs.Where(c => c.ParentId == parentCatalog.Id).ToList();
+            if (childs == null || childs.Count <= 0)
+                return null;
+
+            foreach (var child in childs)
+            {
+                if (child.Id == parentCatalog.Id)
+                    continue;
+
+                childs.AddRange(FindChilds(child, catalogs));
+            }
+
+            return childs;
         }
 
         private void FindChilds(CatalogDto parentCatalog, List<CatalogDto> catalogs)
@@ -58,6 +82,26 @@ namespace Simple.Abp.Articles
             parentCatalogs.ForEach(c => FindChilds(c, catalogs));
 
             return parentCatalogs;
+        }
+
+        public async Task<List<CatalogDto>> GetExistArticleList()
+        {
+            var query = from c in _repository
+                        join a in _articleRepository.WithPublicFilter() on c.Id equals a.CatalogId
+                        group c by new { c.Id, c.ParentId, c.Title, c.Description } into g
+                        select new CatalogDto
+                        {
+                            Id = g.Key.Id,
+                            ParentId = g.Key.ParentId,
+                            Title = g.Key.Title,
+                            Description = g.Key.Description,
+                            ArticleCount = g.Count()
+
+                        } into s
+                        where s.ArticleCount > 0
+                        select s;
+
+            return await _asyncExecuter.ToListAsync(query);
         }
     }
 }
