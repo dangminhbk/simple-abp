@@ -9,9 +9,12 @@
   <li>
     管理功能
     <ul>
-      <li>审计管理</li>
-      <li>客户端管理</li>
+      <li>组织架构管理</li>
+      <li>用户管理</li>
+      <li>角色管理</li>
+      <li>IdentityServer</li>
       <li>定时任务管理</li>
+      <li>审计日志</li>
       <li>语言管理</li>
       <li>设置管理</li>
     </ul>
