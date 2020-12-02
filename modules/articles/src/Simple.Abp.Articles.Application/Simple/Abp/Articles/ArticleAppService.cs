@@ -88,6 +88,7 @@ namespace Simple.Abp.Articles
         protected override IQueryable<Article> ApplyDefaultSorting(IQueryable<Article> query)
         {
             query = query.OrderByDescending(c => c.IsTop)
+                .ThenBy(c=>c.Order)
                 .ThenByDescending(c => c.CreationTime);
 
             return query;
