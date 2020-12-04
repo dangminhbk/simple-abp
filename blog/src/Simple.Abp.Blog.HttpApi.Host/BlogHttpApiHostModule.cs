@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -126,6 +127,8 @@ namespace Simple.Abp.Blog
             //    app.UseErrorPage();
             //}
 
+            ConfigureEndpointHttps(app);
+
             app.UseCorrelationId();
             app.UseVirtualFiles();
             app.UseRouting();
@@ -140,6 +143,21 @@ namespace Simple.Abp.Blog
 
             app.UseAuditing();
             app.UseConfiguredEndpoints();
+        }
+
+        private void ConfigureEndpointHttps(IApplicationBuilder app)
+        {
+            var forwardOptions = new ForwardedHeadersOptions
+            {
+                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto,
+                RequireHeaderSymmetry = false
+            };
+
+            forwardOptions.KnownNetworks.Clear();
+            forwardOptions.KnownProxies.Clear();
+
+            // ref: https://github.com/aspnet/Docs/issues/2384
+            app.UseForwardedHeaders(forwardOptions);
         }
     }
 }
