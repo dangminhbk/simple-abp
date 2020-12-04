@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection;
 using Simple.Abp.Articles.Localization;
+using Simple.Abp.Articles.Permissions;
 using Simple.Abp.Articles.Web.Navigation;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
@@ -53,7 +54,15 @@ namespace Simple.Abp.Articles.Web
 
             Configure<RazorPagesOptions>(options =>
             {
-                //Configure authorization.
+                options.Conventions.AuthorizePage("/Articles/Article/Index", ArticlesPermissions.Article.Default);
+                options.Conventions.AuthorizePage("/Articles/Article/CreateModal", ArticlesPermissions.Article.Create);
+                options.Conventions.AuthorizePage("/Articles/Article/EditModal", ArticlesPermissions.Article.Update);
+                options.Conventions.AuthorizePage("/Articles/Catalog/Index", ArticlesPermissions.Catalog.Default);
+                options.Conventions.AuthorizePage("/Articles/Catalog/CreateModal", ArticlesPermissions.Catalog.Create);
+                options.Conventions.AuthorizePage("/Articles/Catalog/EditModal", ArticlesPermissions.Catalog.Update);
+                options.Conventions.AuthorizePage("/Articles/Tag/Index", ArticlesPermissions.Tag.Default);
+                options.Conventions.AuthorizePage("/Articles/Tag/CreateModal", ArticlesPermissions.Tag.Create);
+                options.Conventions.AuthorizePage("/Articles/Tag/EditModal", ArticlesPermissions.Tag.Update);
             });
         }
     }
