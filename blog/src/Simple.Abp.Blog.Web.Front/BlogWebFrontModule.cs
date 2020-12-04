@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.Mvc.UI.Theme.Cactus;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
@@ -101,6 +102,15 @@ namespace Simple.Abp.Blog.Web.Front
             Configure<AbpNavigationOptions>(options =>
             {
                 options.MenuContributors.Add(new BlogMenuContributor(configuration));
+            });
+        }
+
+        private void ConfigureRazorPages()
+        {
+            Configure<RazorPagesOptions>(options =>
+            {
+                options.Conventions.AddPageRoute("/bilibili", "/bilibili/page/{pageIndex:int}");
+                options.Conventions.AddPageRoute("/projects", "/projects/page/{pageIndex:int}");
             });
         }
 
