@@ -16,6 +16,8 @@
     <Content Remove="wwwroot\libs\blog\css\rtl.css" />
     <Content Remove="wwwroot\libs\blog\css\style-light.css" />
     <Content Remove="wwwroot\libs\blog\css\style.css" />
+    <Content Remove="wwwroot\libs\blog\js\jquery-cookie\jquery.cookie.min.js" />
+    <Content Remove="wwwroot\libs\blog\js\jquery\jquery-3.5.1.slim.min.js" />
     <Content Remove="wwwroot\libs\blog\js\main.js" />
     <Content Remove="wwwroot\libs\prism\prism.css" />
     <Content Remove="wwwroot\libs\prism\prism.js" />
@@ -35,6 +37,8 @@
     <EmbeddedResource Include="wwwroot\libs\blog\css\rtl.css" />
     <EmbeddedResource Include="wwwroot\libs\blog\css\style-light.css" />
     <EmbeddedResource Include="wwwroot\libs\blog\css\style.css" />
+    <EmbeddedResource Include="wwwroot\libs\blog\js\jquery-cookie\jquery.cookie.min.js" />
+    <EmbeddedResource Include="wwwroot\libs\blog\js\jquery\jquery-3.5.1.slim.min.js" />
     <EmbeddedResource Include="wwwroot\libs\blog\js\main.js" />
     <EmbeddedResource Include="wwwroot\libs\prism\prism.css" />
     <EmbeddedResource Include="wwwroot\libs\prism\prism.js" />

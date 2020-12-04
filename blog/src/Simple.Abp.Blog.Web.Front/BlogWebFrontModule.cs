@@ -48,7 +48,7 @@ namespace Simple.Abp.Blog.Web.Front
             ConfigureUrls(configuration);
             ConfigureAuthentication(context,configuration);
             ConfigureNavigationServices(configuration);
-
+            ConfigureRazorPages();
             Configure<CactusOptions>(options =>
             {
                 options.WebsiteFiling = "鲁ICP备19044904号-1";

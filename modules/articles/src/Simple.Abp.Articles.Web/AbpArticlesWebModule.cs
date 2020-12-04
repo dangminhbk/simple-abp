@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Simple.Abp.Articles.Localization;
 using Simple.Abp.Articles.Permissions;
 using Simple.Abp.Articles.Web.Navigation;
-using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AutoMapper;
