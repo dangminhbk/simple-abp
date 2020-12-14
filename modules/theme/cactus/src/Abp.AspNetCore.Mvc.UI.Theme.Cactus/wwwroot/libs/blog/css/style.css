@@ -452,10 +452,10 @@
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
   }
-  body {
+body {
     margin: 0;
     height: 100%;
-    background-color: #1d1f21;
+    background-color: #0d1117;
     color: #c9cacc;
     font-display: swap;
     font-weight: 400;
@@ -466,7 +466,7 @@
     flex: 1;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-  }
+}
   .content {
     position: relative;
     display: flex;
