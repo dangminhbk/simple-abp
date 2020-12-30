@@ -35,8 +35,7 @@ namespace Abp.AspNetCore.Mvc.UI.Theme.Metronic
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<AbpAspNetCoreMvcUiMetronicThemeModule>
-                    ("Abp.AspNetCore.Mvc.UI.Theme.Metronic");
+                options.FileSets.AddEmbedded<AbpAspNetCoreMvcUiMetronicThemeModule>();
             });
 
             Configure<AbpLocalizationOptions>(options =>

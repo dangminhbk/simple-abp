@@ -1,0 +1,8 @@
+@page "/Dict"
+@using Microsoft.Extensions.Localization
+@using global::Simple.Abp.Dict.Localization
+@inject IStringLocalizer<DictResource> L
+@{
+}
+<h1>Dict</h1>
+<p>@L["SamplePageMessage"]</p>

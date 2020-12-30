@@ -8,17 +8,20 @@ using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Guids;
 using Volo.Abp.IdentityServer.ApiResources;
+using Volo.Abp.IdentityServer.ApiScopes;
 using Volo.Abp.IdentityServer.Clients;
 using Volo.Abp.IdentityServer.IdentityResources;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.Uow;
 using ApiResource = Volo.Abp.IdentityServer.ApiResources.ApiResource;
+using ApiScope = Volo.Abp.IdentityServer.ApiScopes.ApiScope;
 using Client = Volo.Abp.IdentityServer.Clients.Client;
 
 namespace Simple.Abp.Blog.IdentityServer
 {
     public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransientDependency
     {
+        private readonly IApiScopeRepository _apiScopeRepository;
         private readonly IApiResourceRepository _apiResourceRepository;
         private readonly IClientRepository _clientRepository;
         private readonly IIdentityResourceDataSeeder _identityResourceDataSeeder;
@@ -28,6 +31,7 @@ namespace Simple.Abp.Blog.IdentityServer
 
         public IdentityServerDataSeedContributor(
             IClientRepository clientRepository,
+            IApiScopeRepository apiScopeRepository,
             IApiResourceRepository apiResourceRepository,
             IIdentityResourceDataSeeder identityResourceDataSeeder,
             IGuidGenerator guidGenerator,
@@ -35,6 +39,7 @@ namespace Simple.Abp.Blog.IdentityServer
             IConfiguration configuration)
         {
             _clientRepository = clientRepository;
+            _apiScopeRepository = apiScopeRepository;
             _apiResourceRepository = apiResourceRepository;
             _identityResourceDataSeeder = identityResourceDataSeeder;
             _guidGenerator = guidGenerator;
@@ -45,9 +50,14 @@ namespace Simple.Abp.Blog.IdentityServer
         [UnitOfWork]
         public virtual async Task SeedAsync(DataSeedContext context)
         {
-            await _identityResourceDataSeeder.CreateStandardResourcesAsync();
+            await _identityResourceDataSeeder.CreateStandardResourcesAsync();      
             await CreateApiResourcesAsync();
+            await CreateApiScopesAsync();
             await CreateClientsAsync();
+        }
+        private async Task CreateApiScopesAsync()
+        {
+            await CreateApiScopeAsync("Blog");
         }
 
         private async Task CreateApiResourcesAsync()
@@ -168,6 +178,24 @@ namespace Simple.Abp.Blog.IdentityServer
             }
         }
 
+        private async Task<ApiScope> CreateApiScopeAsync(string name)
+        {
+            var apiScope = await _apiScopeRepository.GetByNameAsync(name);
+            if (apiScope == null)
+            {
+                apiScope = await _apiScopeRepository.InsertAsync(
+                    new ApiScope(
+                        _guidGenerator.Create(),
+                        name,
+                        name + " API"
+                    ),
+                    autoSave: true
+                );
+            }
+
+            return apiScope;
+        }
+
         private async Task<Client> CreateClientAsync(
             string name,
             IEnumerable<string> scopes,
@@ -180,7 +208,7 @@ namespace Simple.Abp.Blog.IdentityServer
             bool requirePkce = false,
             IEnumerable<string> permissions = null)
         {
-            var client = await _clientRepository.FindByCliendIdAsync(name);
+            var client = await _clientRepository.FindByClientIdAsync(name);
             if (client == null)
             {
                 client = await _clientRepository.InsertAsync(

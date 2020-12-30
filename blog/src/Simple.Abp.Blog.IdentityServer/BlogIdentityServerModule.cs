@@ -44,10 +44,10 @@ namespace Simple.Abp.Blog
         {
             var configuration = context.Services.GetConfiguration();
 
-            context.Services.PreConfigure<AbpIdentityAspNetCoreOptions>(options =>
-            {
-                options.ConfigureAuthentication = false;
-            });
+            //context.Services.PreConfigure<AbpIdentityAspNetCoreOptions>(options =>
+            //{
+            //    options.ConfigureAuthentication = false;
+            //});
 
             PreConfigureCertificates(configuration);
         }

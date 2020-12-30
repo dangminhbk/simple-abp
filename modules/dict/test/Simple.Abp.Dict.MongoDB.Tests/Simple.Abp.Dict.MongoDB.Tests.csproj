@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Simple.Abp.Dict</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Mongo2Go" Version="2.2.16" />
+    <ProjectReference Include="..\..\src\Simple.Abp.Dict.MongoDB\Simple.Abp.Dict.MongoDB.csproj" />
+    <ProjectReference Include="..\Simple.Abp.Dict.TestBase\Simple.Abp.Dict.TestBase.csproj" />
+  </ItemGroup>
+
+</Project>

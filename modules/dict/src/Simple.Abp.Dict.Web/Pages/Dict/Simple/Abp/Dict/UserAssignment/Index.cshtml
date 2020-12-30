@@ -1,0 +1,57 @@
+@page
+@using Simple.Abp.Dict.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Simple.Abp.Dict.Web.Pages.Dict.Simple.Abp.Dict.UserAssignment
+@using Simple.Abp.Dict.Localization
+@using Simple.Abp.Dict.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DictResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["UserAssignment"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:UserAssignment"].Value);
+    PageLayout.Content.MenuItemName = DictMenus.UserAssignment;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Dict/Simple/Abp/Dict/UserAssignment/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Dict/Simple/Abp/Dict/UserAssignment/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["UserAssignment"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+			    @if (await Authorization.IsGrantedAsync(DictPermissions.UserAssignment.Create))
+                {
+                <abp-button id="NewUserAssignmentButton"
+                            text="@L["CreateUserAssignment"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="UserAssignmentTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["UserAssignmentWordCount"]</th>
+                <th>@L["UserAssignmentPhraseCount"]</th>
+                <th>@L["UserAssignmentSentenceCount"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

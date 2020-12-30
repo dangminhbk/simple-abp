@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Simple.Abp.Dict</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.8.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.1" />
+    <ProjectReference Include="..\..\src\Simple.Abp.Dict.EntityFrameworkCore\Simple.Abp.Dict.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Simple.Abp.Dict.TestBase\Simple.Abp.Dict.TestBase.csproj" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.Sqlite" Version="4.0.2" />
+  </ItemGroup>
+
+</Project>

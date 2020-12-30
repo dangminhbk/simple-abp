@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.Extensions.Configuration;
@@ -16,7 +17,10 @@ namespace Simple.Abp.Blog.EntityFrameworkCore
             var configuration = BuildConfiguration();
 
             var builder = new DbContextOptionsBuilder<BlogMigrationsDbContext>()
-                .UseMySql(configuration.GetConnectionString("Default"));
+                .UseMySql(
+                    configuration.GetConnectionString("Default"), 
+                    new MySqlServerVersion(new Version(8, 0, 16))
+                );
 
             return new BlogMigrationsDbContext(builder.Options);
         }

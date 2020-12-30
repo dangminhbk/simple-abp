@@ -1,0 +1,55 @@
+@page
+@using Simple.Abp.Dict.Permissions
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Simple.Abp.Dict.Web.Pages.Dict.Simple.Abp.Dict.UserCatalogMapping
+@using Simple.Abp.Dict.Localization
+@using Simple.Abp.Dict.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<DictResource> L
+@inject IAuthorizationService Authorization
+@{
+    PageLayout.Content.Title = L["UserCatalogMapping"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:UserCatalogMapping"].Value);
+    PageLayout.Content.MenuItemName = DictMenus.UserCatalogMapping;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/Dict/Simple/Abp/Dict/UserCatalogMapping/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/Dict/Simple/Abp/Dict/UserCatalogMapping/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["UserCatalogMapping"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+			    @if (await Authorization.IsGrantedAsync(DictPermissions.UserCatalogMapping.Create))
+                {
+                <abp-button id="NewUserCatalogMappingButton"
+                            text="@L["CreateUserCatalogMapping"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+                }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="UserCatalogMappingTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["UserCatalogMappingCatalogId"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

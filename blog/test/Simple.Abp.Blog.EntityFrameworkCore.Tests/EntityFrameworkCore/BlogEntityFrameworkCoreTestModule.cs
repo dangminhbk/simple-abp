@@ -47,14 +47,14 @@ namespace Simple.Abp.Blog.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
-            var options = new DbContextOptionsBuilder<BlogMigrationsDbContext>()
-                .UseSqlite(connection)
-                .Options;
+            //var options = new DbContextOptionsBuilder<BlogMigrationsDbContext>()
+            //    .UseSqlite(connection)
+            //    .Options;
 
-            using (var context = new BlogMigrationsDbContext(options))
-            {
-                context.GetService<IRelationalDatabaseCreator>().CreateTables();
-            }
+            //using (var context = new BlogMigrationsDbContext(options))
+            //{
+            //    context.GetService<IRelationalDatabaseCreator>().CreateTables();
+            //}
 
             return connection;
         }

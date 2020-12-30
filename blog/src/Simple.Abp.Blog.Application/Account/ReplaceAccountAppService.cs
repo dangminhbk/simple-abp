@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
+using System;
 using System.Threading.Tasks;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Emailing;
@@ -14,7 +16,9 @@ namespace Simple.Abp.Blog
         public ReplaceAccountAppService(IdentityUserManager userManager, 
             IIdentityRoleRepository roleRepository, 
             IAccountEmailer accountEmailer, 
-            IdentitySecurityLogManager identitySecurityLogManager) : base(userManager, roleRepository, accountEmailer, identitySecurityLogManager)
+            IdentitySecurityLogManager identitySecurityLogManager,
+            IOptions<IdentityOptions> identityOptions)
+            : base(userManager, roleRepository, accountEmailer, identitySecurityLogManager, identityOptions)
         {
         }
 
